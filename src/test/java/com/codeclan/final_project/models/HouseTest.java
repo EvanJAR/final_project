@@ -35,7 +35,7 @@ public class HouseTest {
     @Test
     public void canAddRoomToHouse(){
         House house = new House("Camerons House", basket){};
-        Room room = new Room("Kitchen", RoomType.KITCHEN);
+        Room room = new Room("Kitchen", RoomType.KITCHEN, house);
         house.addRoom(room);
         assertEquals(1, house.getNumberOfRooms());
     }
@@ -43,7 +43,7 @@ public class HouseTest {
     @Test
     public void canDeleteRoom(){
         House house = new House("Camerons House", basket){};
-        Room room = new Room("Kitchen", RoomType.KITCHEN);
+        Room room = new Room("Kitchen", RoomType.KITCHEN, house);
         house.addRoom(room);
         house.removeRoom(room);
         assertEquals(0, house.getNumberOfRooms());
