@@ -17,4 +17,8 @@ public class Basket {
     public void setBasketItems(ArrayList<Item> basketItems) {
         this.basketItems = basketItems;
     }
+
+    public int getNumberOfItems() {
+        return basketItems.size();
+    }
 }
