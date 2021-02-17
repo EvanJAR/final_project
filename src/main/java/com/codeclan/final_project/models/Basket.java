@@ -29,4 +29,10 @@ public class Basket {
     public void removeItem(Item item) {
         basketItems.remove(item);
     }
+
+    public double getTotalPrice() {
+
+        return basketItems
+                .stream().mapToDouble(Item::getPrice).sum();
+    }
 }

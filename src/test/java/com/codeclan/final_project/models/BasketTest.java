@@ -33,4 +33,14 @@ public class BasketTest {
         basket.addItem(item);
         basket.removeItem(item);
     }
+
+    @Test
+    public void canGetBasketTotalPrice(){
+        Basket basket = new Basket(){};
+        Item item = new Item("Kitchen Roll", "Plenty", 6.00, "https://www.amazon.co.uk/Plenty-White-Kitchen-Roll-Sheets/dp/B07XD2YQ8N/ref=sr_1_5?crid=2W9SAHO1QDSWQ&dchild=1&keywords=plenty+kitchen+towel&qid=1613564084&sprefix=plenty+%2Caps%2C173&sr=8-5");
+        Item item2 = new Item("Kitchen Roll", "Regina", 8.00, "https://www.amazon.co.uk/Regina-Kitchen-Rolls-Extra-Sheets/dp/B07T2SCHM7/ref=sr_1_5?dchild=1&keywords=kitchen+roll&qid=1613565008&sr=8-5");
+        basket.addItem(item);
+        basket.addItem(item2);
+        assertEquals(14.00, basket.getTotalPrice(), 0.00);
+    }
 }
