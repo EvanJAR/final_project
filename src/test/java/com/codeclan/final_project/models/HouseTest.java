@@ -25,4 +25,13 @@ public class HouseTest {
         house.addRoom(room);
         assertEquals(1, house.getNumberOfRooms());
     }
+
+    @Test
+    public void canDeleteRoom(){
+        House house = new House(){};
+        Room room = new Room("Kitchen", RoomType.KITCHEN);
+        house.addRoom(room);
+        house.removeRoom(room);
+        assertEquals(0, house.getNumberOfRooms());
+    }
 }

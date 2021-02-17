@@ -25,4 +25,8 @@ public class House {
     public void addRoom(Room room) {
         rooms.add(room);
     }
+
+    public void removeRoom(Room room) {
+        rooms.remove(room);
+    }
 }

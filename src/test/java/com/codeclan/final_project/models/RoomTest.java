@@ -42,4 +42,9 @@ public class RoomTest {
         room.addItem(item);
         assertEquals(1, room.getNumberOfItems());
     }
+
+//    @Test
+//    public void canRemoveItem(){
+//        return
+//    }
 }
