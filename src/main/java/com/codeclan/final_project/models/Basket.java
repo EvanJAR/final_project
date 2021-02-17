@@ -21,4 +21,8 @@ public class Basket {
     public int getNumberOfItems() {
         return basketItems.size();
     }
+
+    public void addItem(Item item) {
+        basketItems.add(item);
+    }
 }
