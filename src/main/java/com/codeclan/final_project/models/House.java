@@ -21,4 +21,8 @@ public class House {
     public int getNumberOfRooms() {
         return rooms.size();
     }
+
+    public void addRoom(Room room) {
+        rooms.add(room);
+    }
 }

@@ -21,7 +21,7 @@ public class HouseTest {
     @Test
     void canAddRoomToHouse(){
         House house = new House(){};
-        Room room = new Room();
+        Room room = new Room("Kitchen", RoomType.KITCHEN);
         house.addRoom(room);
         assertEquals(1, house.getNumberOfRooms());
     }
