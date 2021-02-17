@@ -41,4 +41,8 @@ public class Room {
     public int getNumberOfItems() {
         return items.size();
     }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
 }
