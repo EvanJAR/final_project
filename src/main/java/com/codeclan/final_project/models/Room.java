@@ -1,5 +1,7 @@
 package com.codeclan.final_project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 
@@ -17,10 +19,13 @@ public class Room {
     @Column
     private RoomType roomType;
 
-    @OneToMany
+    @OneToMany(mappedBy = "room")
+    @JsonIgnoreProperties({"room"})
     private ArrayList<Item> items;
 
     @ManyToOne
+    @JoinColumn(name = "house_id", nullable = false)
+    @JsonIgnoreProperties({"rooms"})
     private House house;
 
     public Room(String name, RoomType roomType, House house){
