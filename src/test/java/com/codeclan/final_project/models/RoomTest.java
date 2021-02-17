@@ -49,4 +49,5 @@ public class RoomTest {
         room.removeItem(item);
         assertEquals(0, room.getNumberOfItems());
     }
+
 }
