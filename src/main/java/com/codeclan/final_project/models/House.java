@@ -17,4 +17,8 @@ public class House {
     public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }
+
+    public int getNumberOfRooms() {
+        return rooms.size();
+    }
 }

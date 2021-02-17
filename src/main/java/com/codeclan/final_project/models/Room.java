@@ -5,9 +5,10 @@ import java.util.ArrayList;
 public class Room {
 
     private String name;
+    private RoomType roomType;
     private ArrayList<Item> items;
 
-    public Room(String name){
+    public Room(String name, RoomType roomType){
         this.name = name;
         this.items = new ArrayList<>();
     }
