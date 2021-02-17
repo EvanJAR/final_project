@@ -1,18 +1,43 @@
 package com.codeclan.final_project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "items")
 public class Item {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column
     private String name;
+
+    @Column
     private String brand;
+
+    @Column
     private double price;
+
+    @Column
     private String sourceURL;
 
-    public Item(String name, String brand, double price, String sourceURL){
+    @ManyToOne
+    @JoinColumn(name = "room_id", nullable = false)
+    @JsonIgnoreProperties({"items"})
+    private Room room;
+
+    public Item(String name, String brand, double price, String sourceURL, Room room){
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.sourceURL = sourceURL;
+        this.room = room;
     }
+
+    public Item(){};
 
     public String getName() {
         return name;
@@ -44,5 +69,21 @@ public class Item {
 
     public void setSourceURL(String sourceURL) {
         this.sourceURL = sourceURL;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

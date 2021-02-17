@@ -10,10 +10,16 @@ import static org.junit.Assert.assertEquals;
 public class ItemTest {
 
     Item item;
+    Basket basket;
+    Room room;
+    House house;
 
     @Before
     public void before(){
-        item = new Item("Kitchen Roll", "Plenty", 6.00, "https://www.amazon.co.uk/Plenty-White-Kitchen-Roll-Sheets/dp/B07XD2YQ8N/ref=sr_1_5?crid=2W9SAHO1QDSWQ&dchild=1&keywords=plenty+kitchen+towel&qid=1613564084&sprefix=plenty+%2Caps%2C173&sr=8-5");
+        basket = new Basket(){};
+        house = new House("Evans House", basket);
+        room = new Room("Kitchen", RoomType.KITCHEN, house);
+        item = new Item("Kitchen Roll", "Plenty", 6.00, "https://www.amazon.co.uk/Plenty-White-Kitchen-Roll-Sheets/dp/B07XD2YQ8N/ref=sr_1_5?crid=2W9SAHO1QDSWQ&dchild=1&keywords=plenty+kitchen+towel&qid=1613564084&sprefix=plenty+%2Caps%2C173&sr=8-5", room);
 
     }
 
