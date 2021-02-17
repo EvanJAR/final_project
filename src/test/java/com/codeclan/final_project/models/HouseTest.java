@@ -34,4 +34,5 @@ public class HouseTest {
         house.removeRoom(room);
         assertEquals(0, house.getNumberOfRooms());
     }
+
 }
