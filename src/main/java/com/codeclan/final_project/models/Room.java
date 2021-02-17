@@ -10,6 +10,7 @@ public class Room {
 
     public Room(String name, RoomType roomType){
         this.name = name;
+        this.roomType = roomType;
         this.items = new ArrayList<>();
     }
 
