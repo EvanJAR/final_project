@@ -66,4 +66,12 @@ public class House {
     public void setId(long id) {
         this.id = id;
     }
+
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
+    }
 }
