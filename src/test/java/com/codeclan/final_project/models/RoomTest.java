@@ -30,8 +30,8 @@ public class RoomTest {
         assertEquals(RoomType.KITCHEN, room.getRoomType());
     }
     
-//    @Test
-//    void itemListStartsEmpty(){
-//        Room
-//    }
+    @Test
+    public void itemListStartsEmpty(){
+        assertEquals(0, room.getNumberOfItems());
+    }
 }
