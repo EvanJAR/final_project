@@ -92,4 +92,12 @@ public class Item {
     public void setRoom(Room room) {
         this.room = room;
     }
+
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
+    }
 }
