@@ -20,10 +20,16 @@ public class Basket {
     @OneToMany(mappedBy = "basket")
     private List<Item> basketItems;
 
-    public Basket(){
+    @Column
+    private House house;
+
+    public Basket(House house){
+        this.house = house;
         this.basketItems = new ArrayList<>();
     }
 
+    public Basket() {
+    }
 
     public List<Item> getBasketItems() {
         return basketItems;
@@ -57,5 +63,13 @@ public class Basket {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 }
