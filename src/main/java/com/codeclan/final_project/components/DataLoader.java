@@ -29,14 +29,16 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args){
 
-        Basket basket1 = new Basket();
-        basketRepository.save(basket1);
-
-        Basket basket2 = new Basket();
-        basketRepository.save(basket2);
-
         House house1 = new House("Cameron's House", basket1);
         houseRepository.save(house1);
+
+        Basket basket1 = new Basket(house1);
+        basketRepository.save(basket1);
+
+        Basket basket2 = new Basket(house2);
+        basketRepository.save(basket2);
+
+
 
         House house2 = new House("Evan's House", basket2);
         houseRepository.save(house2);
