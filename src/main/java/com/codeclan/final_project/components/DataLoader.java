@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Component
 public class DataLoader implements ApplicationRunner {
 
-    @Autowired
-    BasketRepository basketRepository;
 
     @Autowired
     HouseRepository houseRepository;
@@ -28,7 +26,7 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args){
 
-        House house1 = new House("Cameron's House";
+        House house1 = new House("Cameron's House");
         houseRepository.save(house1);
 
 

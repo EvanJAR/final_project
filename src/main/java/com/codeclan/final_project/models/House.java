@@ -17,6 +17,8 @@ public class House {
     @Column
     private String houseName;
 
+    @Column
+    private List<Item> basketItems;
 
     @OneToMany(mappedBy = "house")
     @JsonIgnoreProperties({"house"})
@@ -25,6 +27,7 @@ public class House {
     public House(String houseName){
         this.houseName = houseName;
         this.rooms = new ArrayList<>();
+        this.basketItems = new ArrayList<>();
     }
 
     public House(){};
