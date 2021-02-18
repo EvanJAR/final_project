@@ -9,13 +9,11 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class HouseTest {
 
-    Basket basket;
     House house;
 
     @Before
     public void before(){
-        basket = new Basket(house);
-        house = new House("Evans House", basket);
+        house = new House("Evans House");
     }
 
     @Test
@@ -24,19 +22,19 @@ public class HouseTest {
 
     @Test
     public void houseHasName(){
-        House house = new House("Camerons House", basket);
+        House house = new House("Camerons House");
         assertEquals("Camerons House", house.getHouseName());
     }
 
     @Test
     public void houseStartsWithEmptyListOfRooms(){
-        House house = new House("Camerons House", basket){};
+        House house = new House("Camerons House"){};
         assertEquals(0, house.getNumberOfRooms());
     }
 
     @Test
     public void canAddRoomToHouse(){
-        House house = new House("Camerons House", basket){};
+        House house = new House("Camerons House"){};
         Room room = new Room("Kitchen", RoomType.KITCHEN, house);
         house.addRoom(room);
         assertEquals(1, house.getNumberOfRooms());
@@ -44,7 +42,7 @@ public class HouseTest {
 
     @Test
     public void canDeleteRoom(){
-        House house = new House("Camerons House", basket){};
+        House house = new House("Camerons House"){};
         Room room = new Room("Kitchen", RoomType.KITCHEN, house);
         house.addRoom(room);
         house.removeRoom(room);

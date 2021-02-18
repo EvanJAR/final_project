@@ -24,10 +24,6 @@ public class Item {
     @Column
     private String sourceURL;
 
-    @ManyToOne
-    @JoinColumn(name = "basket_id", nullable = false)
-    @JsonIgnoreProperties({"items"})
-    private Basket basket;
 
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
@@ -40,7 +36,6 @@ public class Item {
         this.price = price;
         this.sourceURL = sourceURL;
         this.room = room;
-        this.basket = basket;
     }
 
     public Item(){};
@@ -93,11 +88,5 @@ public class Item {
         this.room = room;
     }
 
-    public Basket getBasket() {
-        return basket;
-    }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
-    }
 }

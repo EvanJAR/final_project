@@ -1,7 +1,6 @@
 package com.codeclan.final_project.components;
 
 import com.codeclan.final_project.models.*;
-import com.codeclan.final_project.repositories.BasketRepository;
 import com.codeclan.final_project.repositories.HouseRepository;
 import com.codeclan.final_project.repositories.ItemRepository;
 import com.codeclan.final_project.repositories.RoomRepository;

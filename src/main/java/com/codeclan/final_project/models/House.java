@@ -17,16 +17,13 @@ public class House {
     @Column
     private String houseName;
 
-    @Column
-    private Basket basket;
 
     @OneToMany(mappedBy = "house")
     @JsonIgnoreProperties({"house"})
     private List<Room> rooms;
 
-    public House(String houseName, Basket basket){
+    public House(String houseName){
         this.houseName = houseName;
-        this.basket = basket;
         this.rooms = new ArrayList<>();
     }
 
@@ -75,4 +72,12 @@ public class House {
     public void setBasket(Basket basket) {
         this.basket = basket;
     }
+
+
+//
+//
+//    public double getTotalPrice() {
+//
+//        return basketItems
+//                .stream().mapToDouble(Item::getPrice).sum();
 }
