@@ -41,6 +41,7 @@ public class DataLoader implements ApplicationRunner {
         House house2 = new House("Evan's House", basket2);
         houseRepository.save(house2);
 
+
 //        rooms for house 1
         Room bathroom1 = new Room("Bathroom", RoomType.BATHROOM, house1);
         roomRepository.save(bathroom1);
@@ -63,11 +64,8 @@ public class DataLoader implements ApplicationRunner {
         Room gamesRoom1 = new Room("Games Room", RoomType.OTHER, house2);
         roomRepository.save(gamesRoom1);
 
-        //Do we really want to have the room as a property in the item class
-        //Would we be better creating the item, then having a room.add(item)?
-        //By having to instanciate the room into the item class does it leave less flexibility?
-        //Same goes for house && room, maybe we want to remove house as a property in room
-        //and have the house.add(room)
+
+//      Items
         Item item1 = new Item("Toothpaste", "Colgate", 2.99, "https://www.amazon.co.uk/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A09690401NIX47JXGB6QH&url=%2FColgate-Total-Whitening-Toothpaste-125%2Fdp%2FB007HKT98U%2Fref%3Dsr_1_4_sspa%3Fcrid%3D1JP4NMM8DWREY%26dchild%3D1%26keywords%3Dcolgate%2Btoothpaste%26qid%3D1613598683%26sprefix%3Dcolgate%2B%252Caps%252C179%26sr%3D8-4-spons%26psc%3D1&qualifier=1613598683&id=4745651708090257&widgetName=sp_atf", bathroom1);
         itemRepository.save(item1);
 
