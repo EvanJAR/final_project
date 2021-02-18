@@ -20,9 +20,11 @@ public class Room {
     @Column
     private RoomType roomType;
 
-    @OneToMany(mappedBy = "room")
+
     @JsonIgnoreProperties({"room"})
+    @OneToMany(mappedBy = "room")
     private List<Item> items;
+
 
     @ManyToOne
     @JoinColumn(name = "house_id", nullable = false)

@@ -17,11 +17,12 @@ public class House {
     @Column
     private String houseName;
 
-    @Column
+    @JsonIgnoreProperties({"house", "room"})
+    @OneToMany(mappedBy = "house")
     private List<Item> basketItems;
 
+    @JsonIgnoreProperties({"house", "basketItems", "room"})
     @OneToMany(mappedBy = "house")
-    @JsonIgnoreProperties({"house"})
     private List<Room> rooms;
 
     public House(String houseName) {

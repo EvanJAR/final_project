@@ -21,8 +21,13 @@ public class Item {
     @Column
     private double price;
 
-    @Column
+    @Column(length = 500)
     private String sourceURL;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id", nullable = false)
+    @JsonIgnoreProperties({"items"})
+    private House house;
 
 
     @ManyToOne
@@ -30,11 +35,12 @@ public class Item {
     @JsonIgnoreProperties({"items"})
     private Room room;
 
-    public Item(String name, String brand, double price, String sourceURL, Room room){
+    public Item(String name, String brand, double price, String sourceURL, House house, Room room){
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.sourceURL = sourceURL;
+        this.house = house;
         this.room = room;
     }
 
@@ -88,5 +94,11 @@ public class Item {
         this.room = room;
     }
 
+    public House getHouse() {
+        return house;
+    }
 
+    public void setHouse(House house) {
+        this.house = house;
+    }
 }
