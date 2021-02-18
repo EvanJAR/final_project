@@ -21,7 +21,7 @@ public class House {
     @OneToMany(mappedBy = "house")
     private List<Item> basketItems;
 
-    @JsonIgnoreProperties({"house", "basketItems", "room"})
+    @JsonIgnoreProperties({"house", "items"})
     @OneToMany(mappedBy = "house")
     private List<Room> rooms;
 

@@ -28,7 +28,7 @@ public class Room {
 
     @ManyToOne
     @JoinColumn(name = "house_id", nullable = false)
-    @JsonIgnoreProperties({"rooms"})
+    @JsonIgnoreProperties({"rooms", "house"})
     private House house;
 
     public Room(String name, RoomType roomType, House house){
