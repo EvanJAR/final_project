@@ -41,11 +41,27 @@ public class DataLoader implements ApplicationRunner {
         House house2 = new House("Evan's House", basket2);
         houseRepository.save(house2);
 
+//        rooms for house 1
         Room bathroom1 = new Room("Bathroom", RoomType.BATHROOM, house1);
         roomRepository.save(bathroom1);
 
+        Room kitchen1 = new Room("Kitchen", RoomType.KITCHEN, house1);
+        roomRepository.save(kitchen1);
+
+        Room bedroom1 = new Room("Bedroom", RoomType.BEDROOM, house1);
+        roomRepository.save(bedroom1);
+
+
+
+//        rooms for house 2
+        Room office1 = new Room("Office", RoomType.OFFICE, house2);
+        roomRepository.save(office1);
+
         Room bedroom2 = new Room("Bedroom", RoomType.BEDROOM, house2);
         roomRepository.save(bedroom2);
+
+        Room gamesRoom1 = new Room("Games Room", RoomType.OTHER, house2);
+        roomRepository.save(gamesRoom1);
 
         //Do we really want to have the room as a property in the item class
         //Would we be better creating the item, then having a room.add(item)?
