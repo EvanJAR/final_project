@@ -25,6 +25,11 @@ public class Item {
     private String sourceURL;
 
     @ManyToOne
+    @JoinColumn(name = "basket_id", nullable = false)
+    @JsonIgnoreProperties({"items"})
+    private Basket basket;
+
+    @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
     @JsonIgnoreProperties({"items"})
     private Room room;
@@ -35,6 +40,7 @@ public class Item {
         this.price = price;
         this.sourceURL = sourceURL;
         this.room = room;
+        this.basket = basket;
     }
 
     public Item(){};
