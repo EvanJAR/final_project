@@ -79,5 +79,7 @@ public class DataLoader implements ApplicationRunner {
 
         Item item4 = new Item("Choppingboard", "Harcas", 16.97, "https://www.amazon.co.uk/Chopping-Vegetables-Professional-Strength-Durability/dp/B076HMVTL2/ref=sr_1_7?crid=2HHOZRHF4KUHZ&dchild=1&keywords=chopping+board&qid=1613646069&sprefix=chopping%2Caps%2C171&sr=8-7", kitchen1);
         itemRepository.save(item4);
+
+        Item item5 = new Item("Sponge", "Spontex", 5.99, "https://www.amazon.co.uk/Spontex-Specialist-General-Purpose-Scourer/dp/B00JSMK1I2/ref=sr_1_5?dchild=1&keywords=kitchen+sponge&qid=1613651682&sr=8-5", kitchen1);
     }
 }
