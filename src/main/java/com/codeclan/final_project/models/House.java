@@ -68,8 +68,15 @@ public class House {
         this.id = id;
     }
 
+    public List<Item> getBasketItems() {
+        return basketItems;
+    }
 
-//
+    public void setBasketItems(List<Item> basketItems) {
+        this.basketItems = basketItems;
+    }
+
+    //
 //
 //    public double getTotalPrice() {
 //
