@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "houses")
@@ -21,7 +22,7 @@ public class House {
 
     @OneToMany(mappedBy = "house")
     @JsonIgnoreProperties({"house"})
-    private ArrayList<Room> rooms;
+    private List<Room> rooms;
 
     public House(String houseName, Basket basket){
         this.houseName = houseName;
@@ -31,7 +32,7 @@ public class House {
 
     public House(){};
 
-    public ArrayList<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 

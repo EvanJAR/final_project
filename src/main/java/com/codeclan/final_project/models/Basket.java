@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.codeclan.final_project.models.Item;
 
 @Entity
 @Table(name = "baskets")
@@ -13,15 +16,16 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "basket")
     @JsonIgnoreProperties({"basket"})
-    private ArrayList<Item> basketItems;
+    @OneToMany(mappedBy = "basket")
+    private List<Item> basketItems;
 
     public Basket(){
         this.basketItems = new ArrayList<>();
     }
 
-    public ArrayList<Item> getBasketItems() {
+
+    public List<Item> getBasketItems() {
         return basketItems;
     }
 
