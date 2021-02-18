@@ -81,7 +81,7 @@ public class House {
     }
 
     public int getNumberOfBasketItems() {
-        basketItems.size();
+        return basketItems.size();
     }
 
     //
