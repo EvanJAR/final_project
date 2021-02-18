@@ -27,6 +27,11 @@ public class HouseTest {
     }
 
     @Test
+    public void houseBasketItemsStartEmpty(){
+        assertEquals(0, house.getNumberOfBasketItems());
+    }
+
+    @Test
     public void houseStartsWithEmptyListOfRooms(){
         House house = new House("Camerons House"){};
         assertEquals(0, house.getNumberOfRooms());

@@ -76,6 +76,14 @@ public class House {
         this.basketItems = basketItems;
     }
 
+    public void addBasketItem(Item item){
+        basketItems.add(item);
+    }
+
+    public int getNumberOfBasketItems() {
+        basketItems.size();
+    }
+
     //
 //
 //    public double getTotalPrice() {
