@@ -10,10 +10,12 @@ import static org.junit.Assert.assertEquals;
 public class HouseTest {
 
     Basket basket;
+    House house;
 
     @Before
     public void before(){
-        basket = new Basket();
+        basket = new Basket(house);
+        house = new House("Evans House", basket);
     }
 
     @Test
