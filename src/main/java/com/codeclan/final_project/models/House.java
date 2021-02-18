@@ -24,13 +24,16 @@ public class House {
     @JsonIgnoreProperties({"house"})
     private List<Room> rooms;
 
-    public House(String houseName){
+    public House(String houseName) {
         this.houseName = houseName;
         this.rooms = new ArrayList<>();
         this.basketItems = new ArrayList<>();
     }
 
-    public House(){};
+    public House() {
+    }
+
+    ;
 
     public List<Room> getRooms() {
         return rooms;
@@ -76,7 +79,7 @@ public class House {
         this.basketItems = basketItems;
     }
 
-    public void addBasketItem(Item item){
+    public void addBasketItem(Item item) {
         basketItems.add(item);
     }
 
@@ -84,10 +87,9 @@ public class House {
         return basketItems.size();
     }
 
-    //
-//
-//    public double getTotalPrice() {
-//
-//        return basketItems
-//                .stream().mapToDouble(Item::getPrice).sum();
+    public double getTotalPrice() {
+        return basketItems
+                .stream().mapToDouble(Item::getPrice).sum();
+    }
+
 }
