@@ -26,13 +26,13 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "house_id", nullable = false)
-    @JsonIgnoreProperties({"items"})
+    @JsonIgnoreProperties({"items", "basketItems", "rooms"})
     private House house;
 
 
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
-    @JsonIgnoreProperties({"items"})
+    @JsonIgnoreProperties({"items", "house"})
     private Room room;
 
     public Item(String name, String brand, double price, String sourceURL, House house, Room room){

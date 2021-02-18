@@ -21,7 +21,7 @@ public class Room {
     private RoomType roomType;
 
 
-    @JsonIgnoreProperties({"room"})
+    @JsonIgnoreProperties({"room", "house"})
     @OneToMany(mappedBy = "room")
     private List<Item> items;
 
