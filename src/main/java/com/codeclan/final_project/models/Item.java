@@ -3,6 +3,8 @@ package com.codeclan.final_project.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -26,12 +28,25 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
-    @JsonIgnoreProperties({"items", "house"})
+    @JsonIgnoreProperties({"items", "house", "room"})
     private Room room;
 
-    @ManyToOne
-    @JoinColumn(name = "basket_id", nullable = false)
-    private Basket basket;
+    @ManyToMany
+    @JsonIgnoreProperties({"basketItems"})
+    @JoinTable(
+            name = "baskets_items",
+            joinColumns = { @JoinColumn(
+                    name = "item_id",
+                    nullable = false,
+                    updatable = false
+            )},
+            inverseJoinColumns = { @JoinColumn(
+                    name = "basket_id",
+                    nullable = false,
+                    updatable = false
+            )}
+    )
+    private List<Basket> baskets;
 
     public Item(String name, String brand, double price, String sourceURL, Room room){
         this.name = name;
@@ -39,7 +54,7 @@ public class Item {
         this.price = price;
         this.sourceURL = sourceURL;
         this.room = room;
-        this.basket = basket;
+        this.baskets = new ArrayList<>();
     }
 
     public Item(){};
@@ -92,11 +107,11 @@ public class Item {
         this.room = room;
     }
 
-    public Basket getBasket() {
-        return basket;
+    public List<Basket> getBaskets() {
+        return baskets;
     }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
+    public void setBaskets(List<Basket> baskets) {
+        this.baskets = baskets;
     }
 }

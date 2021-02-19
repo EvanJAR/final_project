@@ -1,6 +1,7 @@
 package com.codeclan.final_project.components;
 
 import com.codeclan.final_project.models.*;
+import com.codeclan.final_project.repositories.BasketRepository;
 import com.codeclan.final_project.repositories.HouseRepository;
 import com.codeclan.final_project.repositories.ItemRepository;
 import com.codeclan.final_project.repositories.RoomRepository;
@@ -21,6 +22,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     RoomRepository roomRepository;
+
+    @Autowired
+    BasketRepository basketRepository;
 
     public DataLoader(){};
 
@@ -79,5 +83,20 @@ public class DataLoader implements ApplicationRunner {
 
         Item item5 = new Item("Sponge", "Spontex", 5.99, "https://www.amazon.co.uk/Spontex-Specialist-General-Purpose-Scourer/dp/B00JSMK1I2/ref=sr_1_5?dchild=1&keywords=kitchen+sponge&qid=1613651682&sr=8-5", kitchen1);
         itemRepository.save(item5);
+
+        //Baskets
+        //Basket for house 1
+        Basket basket1 = new Basket();
+        basketRepository.save(basket1);
+        basket1.addBasketItem(item1);
+        basketRepository.save(basket1);
+
+        //Basket for house 2
+        Basket basket2 = new Basket();
+        basketRepository.save(basket2);
+        basket2.addBasketItem(item2);
+        basket2.addBasketItem(item3);
+        basketRepository.save(basket2);
     }
+
 }

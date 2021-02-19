@@ -1,5 +1,6 @@
 package com.codeclan.final_project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -20,11 +21,9 @@ public class Room {
     @Column
     private RoomType roomType;
 
-
-    @JsonIgnoreProperties({"room", "house"})
+    @JsonIgnoreProperties({"room", "house", "baskets"})
     @OneToMany(mappedBy = "room")
     private List<Item> items;
-
 
     @ManyToOne
     @JoinColumn(name = "house_id", nullable = false)
@@ -64,6 +63,7 @@ public class Room {
         this.roomType = roomType;
     }
 
+    @JsonIgnore
     public int getNumberOfItems() {
         return items.size();
     }
