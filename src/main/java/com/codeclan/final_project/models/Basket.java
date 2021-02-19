@@ -60,6 +60,10 @@ public class Basket {
         basketItems.add(item);
     }
 
+    public void clearBasket(){
+        basketItems.clear();
+    }
+
     @JsonIgnore
     public double getTotalPrice() {
         return basketItems
