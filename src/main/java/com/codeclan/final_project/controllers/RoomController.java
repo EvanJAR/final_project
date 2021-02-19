@@ -37,4 +37,10 @@ public class RoomController {
         roomRepository.save(room);
         return new ResponseEntity<>(room, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/houses/{houseId}/rooms/{roomId}")
+    public ResponseEntity<HttpStatus> deleteHouse(@PathVariable Long houseId, @PathVariable Long roomId) {
+        roomRepository.deleteById(roomId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
