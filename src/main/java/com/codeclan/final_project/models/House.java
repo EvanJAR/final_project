@@ -1,5 +1,6 @@
 package com.codeclan.final_project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -12,14 +13,10 @@ public class House {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private String houseName;
-
-    @JsonIgnoreProperties({"house", "room"})
-    @OneToMany(mappedBy = "house")
-    private List<Item> basketItems;
 
     @JsonIgnoreProperties({"house", "items"})
     @OneToMany(mappedBy = "house")
@@ -28,13 +25,10 @@ public class House {
     public House(String houseName) {
         this.houseName = houseName;
         this.rooms = new ArrayList<>();
-        this.basketItems = new ArrayList<>();
     }
 
     public House() {
     }
-
-    ;
 
     public List<Room> getRooms() {
         return rooms;
@@ -42,10 +36,6 @@ public class House {
 
     public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public int getNumberOfRooms() {
-        return rooms.size();
     }
 
     public void addRoom(Room room) {
@@ -64,33 +54,12 @@ public class House {
         this.houseName = houseName;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Item> getBasketItems() {
-        return basketItems;
-    }
-
-    public void setBasketItems(List<Item> basketItems) {
-        this.basketItems = basketItems;
-    }
-
-    public void addBasketItem(Item item) {
-        basketItems.add(item);
-    }
-
-    public int getNumberOfBasketItems() {
-        return basketItems.size();
-    }
-
-    public double getTotalPrice() {
-        return basketItems
-                .stream().mapToDouble(Item::getPrice).sum();
     }
 
 }

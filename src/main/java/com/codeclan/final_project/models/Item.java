@@ -10,7 +10,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private String name;
@@ -28,7 +28,6 @@ public class Item {
     @JoinColumn(name = "house_id", nullable = false)
     @JsonIgnoreProperties({"items", "basketItems", "rooms"})
     private House house;
-
 
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
@@ -78,11 +77,11 @@ public class Item {
         this.sourceURL = sourceURL;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

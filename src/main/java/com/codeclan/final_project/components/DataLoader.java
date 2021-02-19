@@ -29,11 +29,8 @@ public class DataLoader implements ApplicationRunner {
         House house1 = new House("Cameron's House");
         houseRepository.save(house1);
 
-
-
         House house2 = new House("Evan's House");
         houseRepository.save(house2);
-
 
 //        rooms for house 1
         Room bathroom1 = new Room("Bathroom", RoomType.BATHROOM, house1);
@@ -46,14 +43,10 @@ public class DataLoader implements ApplicationRunner {
         house1.addRoom(kitchen1);
         houseRepository.save(house1);
 
-
-
         Room bedroom1 = new Room("Bedroom", RoomType.BEDROOM, house1);
         roomRepository.save(bedroom1);
         house1.addRoom(bedroom1);
         houseRepository.save(house1);
-
-
 
 //        rooms for house 2
         Room office1 = new Room("Office", RoomType.OFFICE, house2);
@@ -71,7 +64,6 @@ public class DataLoader implements ApplicationRunner {
         house2.addRoom(gamesRoom1);
         houseRepository.save(house2);
 
-
 //      Items
         Item item1 = new Item("Toothpaste", "Colgate", 2.99, "https://www.amazon.co.uk/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A09690401NIX47JXGB6QH&url=%2FColgate-Total-Whitening-Toothpaste-125%2Fdp%2FB007HKT98U%2Fref%3Dsr_1_4_sspa%3Fcrid%3D1JP4NMM8DWREY%26dchild%3D1%26keywords%3Dcolgate%2Btoothpaste%26qid%3D1613598683%26sprefix%3Dcolgate%2B%252Caps%252C179%26sr%3D8-4-spons%26psc%3D1&qualifier=1613598683&id=4745651708090257&widgetName=sp_atf", house1, bathroom1);
         itemRepository.save(item1);
@@ -86,5 +78,6 @@ public class DataLoader implements ApplicationRunner {
         itemRepository.save(item4);
 
         Item item5 = new Item("Sponge", "Spontex", 5.99, "https://www.amazon.co.uk/Spontex-Specialist-General-Purpose-Scourer/dp/B00JSMK1I2/ref=sr_1_5?dchild=1&keywords=kitchen+sponge&qid=1613651682&sr=8-5", house1, kitchen1);
+        itemRepository.save(item5);
     }
 }

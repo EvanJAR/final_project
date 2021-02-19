@@ -1,8 +1,11 @@
 package com.codeclan.final_project.models;
 
+import com.codeclan.final_project.repositories.HouseRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,6 +16,9 @@ public class HouseTest {
     Item item;
     Item item2;
     Room room;
+
+    @Autowired
+    HouseRepository houseRepository;
 
     @Before
     public void before(){
@@ -34,27 +40,9 @@ public class HouseTest {
     }
 
     @Test
-    public void houseBasketItemsStartEmpty(){
-        assertEquals(0, house.getNumberOfBasketItems());
-    }
-
-    @Test
-    public void houseCanAddBasketItems(){
-        house.addBasketItem(item);
-        assertEquals(1, house.getNumberOfBasketItems());
-    }
-
-    @Test
-    public void houseCanGetBasketTotal(){
-        house.addBasketItem(item);
-        house.addBasketItem(item2);
-        assertEquals(8.99, house.getTotalPrice(), 0.00);
-    }
-
-    @Test
     public void houseStartsWithEmptyListOfRooms(){
         House house = new House("Camerons House"){};
-        assertEquals(0, house.getNumberOfRooms());
+        assertEquals(0, house.getRooms().size());
     }
 
     @Test
@@ -62,7 +50,7 @@ public class HouseTest {
         House house = new House("Camerons House"){};
         Room room = new Room("Kitchen", RoomType.KITCHEN, house);
         house.addRoom(room);
-        assertEquals(1, house.getNumberOfRooms());
+        assertEquals(1, house.getRooms().size());
     }
 
     @Test
@@ -71,7 +59,6 @@ public class HouseTest {
         Room room = new Room("Kitchen", RoomType.KITCHEN, house);
         house.addRoom(room);
         house.removeRoom(room);
-        assertEquals(0, house.getNumberOfRooms());
+        assertEquals(0, house.getRooms().size());
     }
-
 }
