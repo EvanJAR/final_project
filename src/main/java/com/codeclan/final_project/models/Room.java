@@ -2,6 +2,7 @@ package com.codeclan.final_project.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Room {
 
     @ManyToOne
     @JoinColumn(name = "house_id", nullable = false)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JsonIgnoreProperties({"rooms", "house"})
     private House house;
 

@@ -1,6 +1,7 @@
 package com.codeclan.final_project.controllers;
 
 import com.codeclan.final_project.models.Room;
+import com.codeclan.final_project.repositories.HouseRepository;
 import com.codeclan.final_project.repositories.RoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +17,23 @@ public class RoomController {
     @Autowired
     RoomRepository roomRepository;
 
-    @GetMapping("/rooms")
+    @Autowired
+    HouseRepository houseRepository;
+
+    @GetMapping("/houses/rooms")
     public ResponseEntity<List<Room>> getAllRooms(){
         List<Room> allRooms = roomRepository.findAll();
         return new ResponseEntity<>(allRooms, HttpStatus.OK);
     }
 
-    @GetMapping("/rooms/{id}")
+    @GetMapping("/houses/{id}/rooms")
     public ResponseEntity<Optional<Room>> getRoom(@PathVariable Long id){
         return new ResponseEntity<>(roomRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/rooms")
-    public ResponseEntity<Room> createRoom(@RequestBody Room room){
+    @PostMapping("/houses/{houseId}/rooms")
+    public ResponseEntity<Room> createRoom(@RequestBody Room room, @PathVariable Long houseId){
+        houseId = room.getHouse().getId();
         roomRepository.save(room);
         return new ResponseEntity<>(room, HttpStatus.CREATED);
     }
