@@ -25,14 +25,13 @@ public class Item {
     private String sourceURL;
 
     @ManyToOne
-    @JoinColumn(name = "house_id", nullable = false)
-    @JsonIgnoreProperties({"items", "basketItems", "rooms"})
-    private House house;
-
-    @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
     @JsonIgnoreProperties({"items", "house"})
     private Room room;
+
+    @ManyToOne
+    @JoinColumn(name = "basket_id", nullable = false)
+    private Basket basket;
 
     public Item(String name, String brand, double price, String sourceURL, Room room){
         this.name = name;
@@ -40,6 +39,7 @@ public class Item {
         this.price = price;
         this.sourceURL = sourceURL;
         this.room = room;
+        this.basket = basket;
     }
 
     public Item(){};
@@ -90,5 +90,13 @@ public class Item {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
     }
 }
