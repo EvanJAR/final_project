@@ -18,19 +18,21 @@ public class ItemController {
     @Autowired
     ItemRepository itemRepository;
 
-    @GetMapping("/items")
+    @GetMapping("/rooms/{id}/items")
     public ResponseEntity<List<Item>> getAllRooms(){
         List<Item> allItems = itemRepository.findAll();
         return new ResponseEntity<>(allItems, HttpStatus.OK);
     }
 
-    @GetMapping("/items/{id}")
+    @GetMapping("/rooms/{id}/items/{id}")
     public ResponseEntity<Optional<Item>> getItem(@PathVariable Long id){
         return new ResponseEntity<>(itemRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/items")
-    public ResponseEntity<Item> createRoom(@RequestBody Item item){
+
+    @PostMapping("/rooms/{roomId}/items")
+    public ResponseEntity<Item> createRoom(@RequestBody Item item, @PathVariable Long roomId){
+        roomId = item.getRoom().getId();
         itemRepository.save(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
