@@ -34,12 +34,11 @@ public class Item {
     @JsonIgnoreProperties({"items", "house"})
     private Room room;
 
-    public Item(String name, String brand, double price, String sourceURL, House house, Room room){
+    public Item(String name, String brand, double price, String sourceURL, Room room){
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.sourceURL = sourceURL;
-        this.house = house;
         this.room = room;
     }
 
@@ -91,13 +90,5 @@ public class Item {
 
     public void setRoom(Room room) {
         this.room = room;
-    }
-
-    public House getHouse() {
-        return house;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
     }
 }
