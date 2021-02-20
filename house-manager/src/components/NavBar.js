@@ -5,8 +5,12 @@ function NavBar(){
   return(
     <>
       <h2>I am the NavBar</h2>
-      <Link path="/home">Home</Link>
-      <Link path="/basket">Basket</Link>
+      <Link to="/">Welcome Page</Link>
+      <Link to="/house">Home</Link>
+      <div>
+        <p>List of basket items here</p>
+        <p>Button to checkout here</p>
+      </div>
     </>
   )
 }
