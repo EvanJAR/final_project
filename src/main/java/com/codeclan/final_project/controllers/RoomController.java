@@ -39,7 +39,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/houses/{houseId}/rooms/{roomId}")
-    public ResponseEntity<HttpStatus> deleteHouse(@PathVariable Long houseId, @PathVariable Long roomId) {
+    public ResponseEntity<HttpStatus> deleteRoom(@PathVariable Long houseId, @PathVariable Long roomId) {
         roomRepository.deleteById(roomId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

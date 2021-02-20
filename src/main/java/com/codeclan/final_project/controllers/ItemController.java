@@ -18,15 +18,21 @@ public class ItemController {
     @Autowired
     ItemRepository itemRepository;
 
-    @GetMapping("/rooms/{id}/items")
+    @GetMapping("/rooms/items")
     public ResponseEntity<List<Item>> getAllRooms(){
         List<Item> allItems = itemRepository.findAll();
         return new ResponseEntity<>(allItems, HttpStatus.OK);
     }
 
-    @GetMapping("/rooms/{id}/items/{id}")
-    public ResponseEntity<Optional<Item>> getItem(@PathVariable Long id){
-        return new ResponseEntity<>(itemRepository.findById(id), HttpStatus.OK);
+    @GetMapping("/rooms/{roomId}/items")
+    public ResponseEntity<List<Item>> getItemsFromRoom(@PathVariable Long roomId){
+        List<Item> roomItems = itemRepository.findByRoomId(roomId);
+        return new ResponseEntity<>(roomItems, HttpStatus.OK);
+    }
+
+    @GetMapping("/rooms/{roomId}/items/{itemId}")
+    public ResponseEntity<Optional<Item>> getItem(@PathVariable Long roomId, @PathVariable Long itemId){
+        return new ResponseEntity<>(itemRepository.findById(itemId), HttpStatus.OK);
     }
 
 
@@ -35,5 +41,11 @@ public class ItemController {
         roomId = item.getRoom().getId();
         itemRepository.save(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/rooms/{roomId}/items/{itemId}")
+    public ResponseEntity<HttpStatus> deleteItem(@PathVariable Long roomId, @PathVariable Long itemId) {
+        itemRepository.deleteById(itemId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

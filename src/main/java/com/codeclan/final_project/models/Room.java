@@ -23,7 +23,7 @@ public class Room {
     private RoomType roomType;
 
     @JsonIgnoreProperties({"room", "house", "baskets"})
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items;
 
     @ManyToOne

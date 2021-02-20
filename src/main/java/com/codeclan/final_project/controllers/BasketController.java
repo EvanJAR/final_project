@@ -27,5 +27,18 @@ public class BasketController {
         return new ResponseEntity<>(basketRepository.findById(id), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/baskets")
+    public ResponseEntity<Basket> createBasket(@RequestBody Basket basket){
+        basketRepository.save(basket);
+        return new ResponseEntity<>(basket, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/baskets/{basketId}")
+    public ResponseEntity<HttpStatus> deleteBasket(@PathVariable Long basketId){
+        basketRepository.deleteById(basketId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 
 }
