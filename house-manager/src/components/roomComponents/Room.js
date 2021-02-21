@@ -1,6 +1,6 @@
 import Item from "../itemComponents/Item";
 
-function Room({room}){
+function Room({room, key}){
 
   const itemNodes = () => {
     //Check to see if room has items
@@ -8,7 +8,7 @@ function Room({room}){
     //If room has items map ite items to item nodes and pass into item component
       room.items.map(item => {
         return (
-          <Item item={item} itemId={item.id}/>
+          <Item item={item} key={item.id}/>
         )
       })
     } else {
@@ -19,7 +19,7 @@ function Room({room}){
   return(
     <>
       <h4>{room.name}</h4>
-      <h5>{itemNodes}</h5>
+      <h5>{itemNodes()}</h5>
     </>
   )
 }

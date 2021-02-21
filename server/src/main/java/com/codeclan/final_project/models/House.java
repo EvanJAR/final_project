@@ -19,7 +19,7 @@ public class House {
     @Column
     private String houseName;
 
-    @JsonIgnoreProperties({"house", "items"})
+    @JsonIgnoreProperties({"house"})
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms;
 

@@ -1,15 +1,13 @@
 
 
-function Item(){
+function Item({item, key}){
 
   return(
     <>
       <h2>Item object</h2>
-      <p>Name</p>
-      <p>Brand</p>
-      <p>Price</p>
-      <p>SourceURL</p>
-      <p>Room</p>
+      <p>{item.name}</p>
+      <p>{item.brand}</p>
+      <p>{item.price}</p>
     </>
   )
 }
