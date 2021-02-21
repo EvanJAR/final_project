@@ -7,7 +7,7 @@ function HouseList({houses}){
   const displayHouses = houses.map(house => {
 
     return(
-      <House house={house}/>
+      <House house={house} key={house.id}/>
     )
   })
 

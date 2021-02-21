@@ -20,7 +20,7 @@ function House({house}){
 
   const roomNodes = rooms.map(room => {
     return (
-      <Room room={room}/>
+      <Room room={room} key={room.id}/>
     )
   })
 
