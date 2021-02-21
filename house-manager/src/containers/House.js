@@ -1,18 +1,17 @@
-import NavBar from "../components/NavBar";
-import RoomList from "../components/roomComponents/RoomList";
-import RoomForm from "../components/roomComponents/RoomForm";
+import Room from "../components/roomComponents/Room";
 
-function House(){
+function House({house}){
+
+  const roomNodes = house.rooms.map(room => {
+    return (
+      <Room room={room} key={room.id}/>
+    )
+  })
 
   return (
     <>
-      <NavBar></NavBar>
-      <div>
-        <h2>Create a room</h2>
-        <RoomForm/>
-      </div>
-      <RoomList/>
-      {/* Here will be a list of room objects that belong to house id(1) */}
+      <h3>{house.houseName}</h3>
+      <div>{roomNodes}</div>
     </>
   )
 }

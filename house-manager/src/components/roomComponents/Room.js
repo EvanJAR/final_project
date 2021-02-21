@@ -1,12 +1,23 @@
-import ItemList from "../itemComponents/ItemList";
+import Item from "../itemComponents/Item";
 
-function Room(){
+function Room({room}){
+
+  const itemNodes = room.items.map(item => {
+    
+    if (room.items != null){
+      return (
+        <Item item={item} itemId={item.id}/>
+      )
+    }
+
+    else return null;
+    
+  })
 
   return(
     <>
-      <h1>Add an item</h1>
-      <p>Form to add an item goes here</p>
-      <ItemList></ItemList>
+      <h4>{room.name}</h4>
+      <h5>{itemNodes}</h5>
     </>
   )
 }
