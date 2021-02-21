@@ -2,17 +2,19 @@ import Item from "../itemComponents/Item";
 
 function Room({room}){
 
-  const itemNodes = room.items.map(item => {
-    
+  const itemNodes = () => {
+    //Check to see if room has items
     if (room.items != null){
-      return (
-        <Item item={item} itemId={item.id}/>
-      )
+    //If room has items map ite items to item nodes and pass into item component
+      room.items.map(item => {
+        return (
+          <Item item={item} itemId={item.id}/>
+        )
+      })
+    } else {
+      return null
     }
-
-    else return null;
-    
-  })
+  }
 
   return(
     <>
