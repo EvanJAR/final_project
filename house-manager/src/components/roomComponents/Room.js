@@ -17,8 +17,6 @@ function Room({room}){
     getItemsFromRoom();
   }, []);
 
-  console.log(items);
-
   const itemNodes = items.map(item => {
     return(
       <Item item={item}/>

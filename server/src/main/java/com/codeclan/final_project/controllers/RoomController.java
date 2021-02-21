@@ -1,5 +1,6 @@
 package com.codeclan.final_project.controllers;
 
+import com.codeclan.final_project.models.Item;
 import com.codeclan.final_project.models.Room;
 import com.codeclan.final_project.repositories.HouseRepository;
 import com.codeclan.final_project.repositories.RoomRepository;
@@ -26,9 +27,15 @@ public class RoomController {
         return new ResponseEntity<>(allRooms, HttpStatus.OK);
     }
 
-    @GetMapping("/houses/{id}/rooms")
-    public ResponseEntity<Optional<Room>> getRoom(@PathVariable Long id){
-        return new ResponseEntity<>(roomRepository.findById(id), HttpStatus.OK);
+//    @GetMapping("/houses/{id}/rooms")
+//    public ResponseEntity<Optional<Room>> getRoom(@PathVariable Long id){
+//        return new ResponseEntity<>(roomRepository.findById(id), HttpStatus.OK);
+//    }
+
+    @GetMapping("/houses/{houseId}/rooms")
+    public ResponseEntity<List<Room>> getItemsFromRoom(@PathVariable Long houseId){
+        List<Room> houseRooms = roomRepository.findByHouseId(houseId);
+        return new ResponseEntity<>(houseRooms, HttpStatus.OK);
     }
 
     @PostMapping("/houses/{houseId}/rooms")

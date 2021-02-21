@@ -1,10 +1,26 @@
 import Room from "../components/roomComponents/Room";
+import {useState, useEffect} from 'react';
 
 function House({house}){
 
-  const roomNodes = house.rooms.map(room => {
+  const [rooms, setRooms] = useState([]);
+
+  const getRoomsFromHouse = () => {
+    fetch(`http://localhost:8080/houses/${house.id}/rooms`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      setRooms(data);
+    }
+    )};
+
+  useEffect(() => {
+    getRoomsFromHouse();
+  }, []);
+
+  const roomNodes = rooms.map(room => {
     return (
-      <Room room={room} roomid={room.id}/>
+      <Room room={room}/>
     )
   })
 
