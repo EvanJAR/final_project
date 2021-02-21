@@ -16,7 +16,7 @@ public class HouseController {
     @Autowired
     HouseRepository houseRepository;
 
-    @GetMapping(value = "/houses")
+    @GetMapping(value = "/houses")      
     public ResponseEntity<List<House>> getAllHouses(){
         List<House> allHouses = houseRepository.findAll();
         return new ResponseEntity<>(allHouses, HttpStatus.OK);
