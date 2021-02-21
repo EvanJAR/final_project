@@ -4,7 +4,7 @@ function House({house}){
 
   const roomNodes = house.rooms.map(room => {
     return (
-      <Room room={room} key={room.id}/>
+      <Room room={room} roomid={room.id}/>
     )
   })
 

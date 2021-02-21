@@ -1,25 +1,34 @@
 import Item from "../itemComponents/Item";
+import {useState, useEffect} from 'react';
 
-function Room({room, key}){
+function Room({room}){
 
-  const itemNodes = () => {
-    //Check to see if room has items
-    if (room.items != null){
-    //If room has items map ite items to item nodes and pass into item component
-      room.items.map(item => {
-        return (
-          <Item item={item} key={item.id}/>
-        )
-      })
-    } else {
-      return null
+  const [items, setItems] = useState([]);
+
+  const getItemsFromRoom = () => {
+    fetch(`http://localhost:8080/rooms/${room.id}/items`)
+    .then(res => res.json())
+    .then(data => {
+      setItems(data);
     }
-  }
+    )};
+
+  useEffect(() => {
+    getItemsFromRoom();
+  }, []);
+
+  console.log(items);
+
+  const itemNodes = items.map(item => {
+    return(
+      <Item item={item}/>
+    )
+  })
 
   return(
     <>
       <h4>{room.name}</h4>
-      <h5>{itemNodes()}</h5>
+      <>{itemNodes}</>
     </>
   )
 }

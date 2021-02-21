@@ -12,7 +12,6 @@ function App() {
     fetch('http://localhost:8080/houses')
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       setHouses(data);
     }
     )};
@@ -20,8 +19,6 @@ function App() {
   useEffect(() => {
     getAllHouses();
   }, []);
-
-  console.log(houses);
 
   return (
     <Router>
