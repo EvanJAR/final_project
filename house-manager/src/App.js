@@ -3,7 +3,8 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HouseList from "./components/houseComponents/HouseList";
 import HouseContainer from "./containers/HouseContainer";
 import {useState, useEffect} from 'react';
-import {getAllHouses, createNewHouse} from "./components/helpers/HouseService";
+import {Link} from "react-router-dom";
+
 
 function App() {
 
@@ -23,19 +24,28 @@ function App() {
     .then(res => console.log(res.statusText))
   }
 
-  useEffect(() => {
-    getAllHouses()
+  const getAllHouses = () => {
+    fetch('http://localhost:8080/houses')
+    .then(res => res.json())
     .then(data => {
       setHouses(data);
     }
-  )}, []);
+  )};
+
+  useEffect(() => {
+    getAllHouses()
+  }, []);
 
 
   const displayButtons = houses.map(house => {
 
+    const housePath = house.id;
+    console.log("this is the house id", house.id)
+
     return (
       <li>
-      <button ><a href="/house/{house.id}">{house.houseName}</a></button>
+        <button><Link to="/house/{housePath}">{house.houseName}</Link></button>
+    
       </li>
      
   )})
@@ -55,7 +65,14 @@ function App() {
     setNewHouse(userInput)
   }
 
-
+  const createHouseRoutes = houses.map(house => {
+    const housePath = house.id
+    return (
+      <Route exact path="/house/{housePath}">
+        <HouseContainer house={house} /> 
+      </Route>
+    )
+  })
 
 
   return (
@@ -83,8 +100,8 @@ function App() {
           
 
         </Route>
-        <Route exact path="/house/{id}" component={HouseContainer}>
-          <HouseContainer/>
+        <Route >
+          {createHouseRoutes}
         </Route>
       </Switch>
     </Router>

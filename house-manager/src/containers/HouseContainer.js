@@ -31,7 +31,7 @@ function HouseContainer({house}){
       <NavBar house={house}/>
     </div>
       
-      <div>{roomNodes}</div>
+    <div>{roomNodes}</div>
     </>
   )
 }
