@@ -30,8 +30,9 @@ function HouseContainer({house}){
     <div>
       <NavBar house={house}/>
     </div>
-      
-    <div>{roomNodes}</div>
+    <div>
+      {roomNodes}
+    </div>
     </>
   )
 }
