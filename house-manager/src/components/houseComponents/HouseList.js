@@ -1,4 +1,4 @@
-import House from "../../containers/HouseContainer";
+import HouseContainer from "../../containers/HouseContainer";
 import {getAllHouses} from '../helpers/HouseService';
 
 function HouseList({houses}){
@@ -7,7 +7,7 @@ function HouseList({houses}){
   const displayHouses = houses.map(house => {
 
     return(
-      <House house={house} key={house.id}/>
+      <HouseContainer house={house} key={house.id}/>
     )
   })
 
