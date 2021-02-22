@@ -33,7 +33,7 @@ function RoomForm({house}){
       },
       body: JSON.stringify({
         'name': `${newRoom}`,
-        'RoomType': `${roomType}`,
+        'roomType': `${roomType}`,
         'house': {
           'id': `${house.id}`
         }

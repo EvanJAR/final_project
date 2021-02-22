@@ -25,9 +25,7 @@ function App() {
   const displayButtons = houses.map(house => {
 
     const housePath = `/house/${house.id}`;
-
-    console.log("this is the house id", house.id)
-
+    
     return (
       <li>
         <button>
