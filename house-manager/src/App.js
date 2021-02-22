@@ -19,18 +19,26 @@ function App() {
 
   useEffect(() => {
     getAllHouses()
-  }, []);
+  }, [houses]);
 
   //Rendering buttons for each house
   const displayButtons = houses.map(house => {
 
     const housePath = `/house/${house.id}`;
-    
+
+    const deleteHouse = () => {
+      fetch(`http://localhost:8080/houses/${house.id}`, {
+        method: 'DELETE',
+      })
+      .then(res => console.log(res.status))
+    }
+
     return (
       <li>
         <button>
           <Link to={housePath}>{house.houseName}</Link>
         </button>
+        <button onClick={deleteHouse}>Delete house</button>
       </li>
     )
   });
@@ -51,7 +59,9 @@ function App() {
 
   return (
     <Router>
+
       <Switch>
+
         <Route exact path="/">
           {/* Welcome message */}
           <div>
@@ -76,13 +86,11 @@ function App() {
         </Route>
 
         {/* Creating routes for each element by mapping over each house in houses */}
-        <div>
-          {createHouseRoutes}
-        </div>
-
+        {createHouseRoutes}
+        
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;
