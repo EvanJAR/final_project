@@ -8,21 +8,6 @@ function App() {
 
   //Use states
   const [houses, setHouses] = useState([]);
-  // const [newHouse, setNewHouse] = useState(null);
-
-  // //House service - get all houses, create new house, useEffect
-  // const createNewHouse = () => {
-  //   fetch('http://localhost:8080/houses', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       'houseName': `${newHouse}`
-  //     })
-  //   })
-  //   .then(res => console.log(res.statusText))
-  // }
 
   const getAllHouses = () => {
     fetch('http://localhost:8080/houses')
@@ -38,36 +23,29 @@ function App() {
 
   //Rendering buttons for each house
   const displayButtons = houses.map(house => {
-    const housePath = house.id;
+
+    const housePath = `/house/${house.id}`;
+
     console.log("this is the house id", house.id)
+
     return (
       <li>
-        <button><Link to="/house/{housePath}">{house.houseName}</Link></button>
+        <button><Link to={housePath}>{house.houseName}</Link></button>
       </li>
     )
   })
 
-  // //Handling the submit && creating a new house
-  // const handleSubmit = (event) => {
-  //   if (newHouse != null) {
-  //     createNewHouse();
-  //   } 
-  // }
-
-  // //Handling the text input for changing the newHouse state
-  // const handleChange = (event) => {
-  //   event.preventDefault();
-  //   const userInput = event.target.value;
-  //   setNewHouse(userInput)
-  // }
-
   //Creating individual routes for each house object in houses
   const createHouseRoutes = houses.map(house => {
-    const housePath = house.id
+
+    const housePath = `/house/${house.id}`;
+
     return (
-      <Route exact path="/house/{housePath}">
+
+      <Route path={housePath}>
         <HouseContainer house={house} /> 
       </Route>
+
     )
   })
 
@@ -96,10 +74,12 @@ function App() {
             </ul>
           </div>
         </Route>
+
         {/* Creating routes for each element by mapping over each house in houses */}
         <div>
           {createHouseRoutes}
         </div>
+
       </Switch>
     </Router>
   );
