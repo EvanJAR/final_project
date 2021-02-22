@@ -30,10 +30,12 @@ function App() {
 
     return (
       <li>
-        <button><Link to={housePath}>{house.houseName}</Link></button>
+        <button>
+          <Link to={housePath}>{house.houseName}</Link>
+        </button>
       </li>
     )
-  })
+  });
 
   //Creating individual routes for each house object in houses
   const createHouseRoutes = houses.map(house => {
@@ -43,11 +45,11 @@ function App() {
     return (
 
       <Route path={housePath}>
-        <HouseContainer house={house} /> 
+        <HouseContainer house={house} key={house.id}/> 
       </Route>
 
     )
-  })
+  });
 
   return (
     <Router>

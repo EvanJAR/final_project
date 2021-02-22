@@ -5,7 +5,7 @@ function HouseForm(){
   const [newHouse, setNewHouse] = useState(null);
 
   //Handling the submit && creating a new house
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     if (newHouse != null) {
       createNewHouse();
     } 

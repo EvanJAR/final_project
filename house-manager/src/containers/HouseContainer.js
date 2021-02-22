@@ -1,6 +1,7 @@
 import Room from "../components/roomComponents/Room";
 import {useState, useEffect} from 'react';
 import NavBar from '../components/NavBar'
+import RoomForm from "../components/roomComponents/RoomForm";
 
 function HouseContainer({house}){
 
@@ -23,7 +24,7 @@ function HouseContainer({house}){
     return (
       <Room room={room} key={room.id}/>
     )
-  })
+  });
 
   return (
     <>
@@ -33,6 +34,7 @@ function HouseContainer({house}){
     <div>
       {roomNodes}
     </div>
+    <RoomForm house={house} key={house.id}/>
     </>
   )
 }
