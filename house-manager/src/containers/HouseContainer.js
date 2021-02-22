@@ -1,5 +1,6 @@
 import Room from "../components/roomComponents/Room";
 import {useState, useEffect} from 'react';
+import NavBar from '../components/NavBar'
 
 function House({house}){
 
@@ -26,7 +27,10 @@ function House({house}){
 
   return (
     <>
-      <h3>{house.houseName}</h3>
+    <div>
+      <NavBar house={house}/>
+    </div>
+      
       <div>{roomNodes}</div>
     </>
   )

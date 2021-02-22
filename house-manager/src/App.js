@@ -1,12 +1,13 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HouseList from "./components/houseComponents/HouseList";
-import House from "./containers/House";
+import HouseContainer from "./containers/HouseContainer";
 import {useState, useEffect} from 'react';
 
 function App() {
 
   const [houses, setHouses] = useState([]);
+  const [newHouse, setNewHouse] = useState("");
 
   const getAllHouses = () => {
     fetch('http://localhost:8080/houses')
@@ -16,9 +17,44 @@ function App() {
     }
     )};
 
+  const createNewHouse = () => {
+    fetch('http://localhost:8080/houses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'houseName': `${newHouse}`
+      })
+    })
+    .then(res => console.log(res.statusText))
+  }
+
   useEffect(() => {
     getAllHouses();
   }, []);
+
+
+  const displayButtons = houses.map(house => {
+    return (
+      <li>
+      <button link="/house/{house.id}">{house.houseName}</button>
+      </li>
+     
+  )})
+
+  const handleSubmit = (event) => {
+    createNewHouse();
+  }
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    const userInput = event.target.value;
+    setNewHouse(userInput)
+  }
+
+
+
 
   return (
     <Router>
@@ -28,14 +64,26 @@ function App() {
           <p>This is our app and this is how it is used</p>
 
           <h2>Create a house</h2>
-          <p>Form to make house goes here</p>
 
+          <form onSubmit={handleSubmit}>
+            <label>
+              Enter house name:
+              <input type="text" onChange={handleChange} />
+            </label>
+            <input type="submit" value="submit"/>
+          </form>
+
+          <div>
           <h3>Select your house</h3>
-          <p>Option to select existing house</p>
-          <HouseList houses={houses}/>
+            <ul>
+              {displayButtons}
+            </ul>
+          </div>
+          
+
         </Route>
         <Route path="/house/{id}">
-          <House/>
+          <HouseContainer/>
         </Route>
       </Switch>
     </Router>
