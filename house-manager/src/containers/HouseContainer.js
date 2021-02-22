@@ -2,7 +2,7 @@ import Room from "../components/roomComponents/Room";
 import {useState, useEffect} from 'react';
 import NavBar from '../components/NavBar'
 
-function House({house}){
+function HouseContainer({house}){
 
   const [rooms, setRooms] = useState([]);
 
@@ -36,4 +36,4 @@ function House({house}){
   )
 }
 
-export default House;
+export default HouseContainer;

@@ -3,19 +3,12 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HouseList from "./components/houseComponents/HouseList";
 import HouseContainer from "./containers/HouseContainer";
 import {useState, useEffect} from 'react';
+import {getAllHouses, createNewHouse} from "./components/helpers/HouseService";
 
 function App() {
 
   const [houses, setHouses] = useState([]);
   const [newHouse, setNewHouse] = useState(null);
-
-  const getAllHouses = () => {
-    fetch('http://localhost:8080/houses')
-    .then(res => res.json())
-    .then(data => {
-      setHouses(data);
-    }
-    )};
 
   const createNewHouse = () => {
     fetch('http://localhost:8080/houses', {
@@ -31,14 +24,18 @@ function App() {
   }
 
   useEffect(() => {
-    getAllHouses();
-  }, []);
+    getAllHouses()
+    .then(data => {
+      setHouses(data);
+    }
+  )}, []);
 
 
   const displayButtons = houses.map(house => {
+
     return (
       <li>
-      <button link="/house/{house.id}">{house.houseName}</button>
+      <button ><a href="/house/{house.id}">{house.houseName}</a></button>
       </li>
      
   )})
@@ -86,7 +83,7 @@ function App() {
           
 
         </Route>
-        <Route path="/house/{id}">
+        <Route exact path="/house/{id}" component={HouseContainer}>
           <HouseContainer/>
         </Route>
       </Switch>
