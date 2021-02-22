@@ -1,5 +1,6 @@
 import Item from "../itemComponents/Item";
 import {useState, useEffect} from 'react';
+import ItemForm from "../itemComponents/ItemForm";
 
 function Room({room}){
 
@@ -15,7 +16,7 @@ function Room({room}){
 
   useEffect(() => {
     getItemsFromRoom();
-  }, []);
+  }, [items]);
 
   const deleteRoom = () => {
     fetch(`http://localhost:8080/houses/${room.house.id}/rooms/${room.id}`, {
@@ -35,6 +36,7 @@ function Room({room}){
       <h4>{room.name}</h4>
       <button onClick={deleteRoom}>Delete room</button>
       <>{itemNodes}</>
+      <ItemForm room={room}/>
     </>
   )
 }
