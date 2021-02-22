@@ -7,7 +7,7 @@ import {useState, useEffect} from 'react';
 function App() {
 
   const [houses, setHouses] = useState([]);
-  const [newHouse, setNewHouse] = useState("");
+  const [newHouse, setNewHouse] = useState(null);
 
   const getAllHouses = () => {
     fetch('http://localhost:8080/houses')
@@ -44,8 +44,13 @@ function App() {
   )})
 
   const handleSubmit = (event) => {
-    createNewHouse();
+    if (newHouse != null) {
+      createNewHouse();
+    } 
   }
+
+
+
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -67,8 +72,7 @@ function App() {
 
           <form onSubmit={handleSubmit}>
             <label>
-              Enter house name:
-              <input type="text" onChange={handleChange} />
+              <input type="text" placeholder="Enter house name" required onChange={handleChange} />
             </label>
             <input type="submit" value="submit"/>
           </form>
