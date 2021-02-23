@@ -1,23 +1,20 @@
-import {useState, useEffect} from 'react';
+import BasketItem from "./BasketItem";
 
-function Basket ({house, deleteItem}) {
+function Basket ({house, deleteBasketItem}) {
 
     if (!house.basket) {
         return null;
     }
 
     const basketNodes = house.basket.basketItems.map(item => {
-        
         return (
-            <>
-                <p>{item.name}, {item.brand} - {item.price}</p> 
-                <button onClick={ () => deleteItem(item)}>Remove From Basket</button>
-            </>
+            <BasketItem  deleteBasketItem={deleteBasketItem} house={house} item={item}/>
         )
     })
 
     return (
         <>
+        <p>Basket items go here</p>
         {basketNodes}
         </>
     )

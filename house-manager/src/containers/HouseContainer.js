@@ -31,18 +31,59 @@ function HouseContainer({house}){
     getRoomsFromHouse();
   }, []);
 
+  const [basketItems, setBasketItems] = useState([]);
+
+  const getBasketItems = () => {
+    fetch(`http://localhost:8080/houses/${house.id}/basket/items`)
+    .then(res => res.json())
+    .then(data => {
+        setBasketItems(data);
+    });
+  };
+
+  const addItemToBasket = (item) => {
+    console.log(basketItems);
+    fetch(`http://localhost:8080/houses/${house.id}/basket/items/${item.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    })
+    .then(res => res.json())
+    .then(data => setBasketItems([...basketItems, data]))
+    console.log(basketItems);
+  };
+
+  const deleteBasketItem = (item) => {
+    fetch(`http://localhost:8080/houses/${house.id}/basket/${item.id}`, {
+        method: 'DELETE',
+    })
+    .then(data => {
+        const newBasketItems = basketItems.filter(oldItem => {
+            return item.id !== oldItem.id
+        })
+        console.log("New basket items:" + newBasketItems);
+        console.log("Basket items before set:" + basketItems);
+        setBasketItems(newBasketItems);
+        console.log("Basket items after set:" + basketItems);
+    });
+  };
+
+  useEffect(() => {
+      getBasketItems();
+  }, []);
+
   const roomNodes = rooms.map(room => {
     return (
-      <>
-        <Room deleteRoom={deleteRoom} house ={house} room={room} key={room.id}/>
-      </>
+      <Room addItemToBasket={addItemToBasket} deleteRoom={deleteRoom} house ={house} room={room} key={room.id}/>
     )
   });
 
   return (
     <>
     <div>
-      <NavBar house={house} key={house.id}/>
+      <NavBar deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
     </div>
     <div>
       {roomNodes}

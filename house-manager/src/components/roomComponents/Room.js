@@ -2,7 +2,7 @@ import Item from "../itemComponents/Item";
 import {useState, useEffect} from 'react';
 import ItemForm from "../itemComponents/ItemForm";
 
-function Room({house, room, deleteRoom}){
+function Room({house, room, addItemToBasket, deleteRoom}){
 
   const [items, setItems] = useState([]);
 
@@ -11,10 +11,11 @@ function Room({house, room, deleteRoom}){
     .then(res => res.json())
     .then(data => {
       setItems(data);
-    }
-    )};
+    })
+  };
 
   const createNewItem = (item) => {
+    console.log(items);
     fetch(`http://localhost:8080/rooms/${room.id}/items`, {
       method: 'POST',
       headers: {
@@ -24,6 +25,7 @@ function Room({house, room, deleteRoom}){
     })
     .then(res => res.json())
     .then(data => setItems([...items, data]))
+    console.log(items);
   };
 
   const deleteItem = (item) => {
@@ -44,9 +46,9 @@ function Room({house, room, deleteRoom}){
 
   const itemNodes = items.map(item => {
     return(
-      <Item deleteItem={deleteItem} house={house} item={item} key={item.id}/>
+      <Item addItemToBasket={addItemToBasket} deleteItem={deleteItem} house={house} item={item} key={item.id}/>
     )
-  })
+  });
 
   return(
     <>

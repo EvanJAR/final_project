@@ -24,7 +24,8 @@ public class BasketItemsController {
 
     @GetMapping("/houses/{houseId}/basket/items")
     public ResponseEntity<List<Item>> getItemsFromBasket(@PathVariable Long houseId){
-        House house = houseRepository.findById(houseId).get();
+        Optional<House> optionalHouse = houseRepository.findById(houseId);
+        House house = optionalHouse.get();
         List<Item> basketItems = house.getBasket().getBasketItems();
         return new ResponseEntity<>(basketItems, HttpStatus.OK);
     }
@@ -40,7 +41,6 @@ public class BasketItemsController {
         return new ResponseEntity<>(house, HttpStatus.CREATED);
     }
 
-    //delete basket items
     @DeleteMapping("houses/{houseId}/basket/{itemId}")
     public ResponseEntity<House> deleteBasketItem(@PathVariable Long houseId, @PathVariable Long itemId) {
         Optional<House> houseOptional = houseRepository.findById(houseId);

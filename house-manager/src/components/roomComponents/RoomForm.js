@@ -15,14 +15,12 @@ function RoomForm({house}){
     event.preventDefault();
     const userInput = event.target.value;
     setNewRoom(userInput);
-    console.log(userInput);
   };
 
   const handleRoomTypeSelect = (event) => {
     event.preventDefault();
     const userInput = event.target.value;
     setRoomType(userInput);
-    console.log(userInput);
   };
 
   const createNewRoom = () => {
