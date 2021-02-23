@@ -35,7 +35,6 @@ public class ItemController {
         return new ResponseEntity<>(itemRepository.findById(itemId), HttpStatus.OK);
     }
 
-    //
     @PostMapping("/rooms/{roomId}/items")
     public ResponseEntity<Item> createItemInRoom(@RequestBody Item item, @PathVariable Long roomId){
         roomId = item.getRoom().getId();

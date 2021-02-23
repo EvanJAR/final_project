@@ -43,7 +43,7 @@ function HouseContainer({house}){
 
   const addItemToBasket = (item) => {
     console.log(basketItems);
-    fetch(`http://localhost:8080/houses/${house.id}/basket/items/${item.id}`, {
+    fetch(`http://localhost:8080/houses/${house.id}/basket/items`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

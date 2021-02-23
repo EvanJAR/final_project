@@ -30,15 +30,14 @@ public class BasketItemsController {
         return new ResponseEntity<>(basketItems, HttpStatus.OK);
     }
 
-    @PostMapping("/houses/{houseId}/basket/items/{itemId}")
-    public ResponseEntity<House> addItemToBasket(@PathVariable Long itemId, @PathVariable Long houseId){
+    @PostMapping("/houses/{houseId}/basket/items")
+    public ResponseEntity<List<Item>> postItemToBasket(@RequestBody Item item, @PathVariable Long houseId){
         Optional<House> optionalHouse = houseRepository.findById(houseId);
-        Optional<Item> optionalItem = itemRepository.findById(itemId);
         House house = optionalHouse.get();
-        Item item = optionalItem.get();
         house.addItemToBasket(item);
         houseRepository.save(house);
-        return new ResponseEntity<>(house, HttpStatus.CREATED);
+        List<Item> basketItems = house.getBasket().getBasketItems();
+        return new ResponseEntity<>(basketItems, HttpStatus.CREATED);
     }
 
     @DeleteMapping("houses/{houseId}/basket/{itemId}")
