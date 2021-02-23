@@ -14,6 +14,31 @@ function Room({house, room}){
     }
     )};
 
+  const createNewItem = (item) => {
+    fetch(`http://localhost:8080/rooms/${room.id}/items`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    })
+    .then(res => res.json())
+    .then(data => setItems([...items, data]))
+  }
+
+  const deleteItem = (item) => {
+    fetch(`http://localhost:8080/rooms/${item.room.id}/items/${item.id}`, {
+      method: 'DELETE',
+    })
+    .then(data => {
+      const newItems = items.filter(oldItem => {
+        return item.id !== oldItem.id
+      })
+      console.log(newItems);
+      setItems(newItems);
+    })
+  }
+
   useEffect(() => {
     getItemsFromRoom();
   }, []);
@@ -27,7 +52,7 @@ function Room({house, room}){
 
   const itemNodes = items.map(item => {
     return(
-      <Item house={house} item={item} key={item.id}/>
+      <Item deleteItem={deleteItem} house={house} item={item} key={item.id}/>
     )
   })
 
@@ -36,7 +61,7 @@ function Room({house, room}){
       <h4>{room.name}</h4>
       <button onClick={deleteRoom}>Delete room</button>
       <>{itemNodes}</>
-      <ItemForm room={room}/>
+      <ItemForm createNewItem={createNewItem} room={room}/>
     </>
   )
 }

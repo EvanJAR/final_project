@@ -1,13 +1,6 @@
 
 
-function Item({house, item}){
-
-  const deleteItem = () => {
-    fetch(`http://localhost:8080/rooms/${item.room.id}/items/${item.id}`, {
-      method: 'DELETE',
-    })
-    .then(res => console.log(res.status))
-  }
+function Item({house, item, deleteItem}){
 
   const addItemToBasket = () => {
     console.log(house.id);
@@ -29,7 +22,7 @@ function Item({house, item}){
       <p>{item.brand}</p>
       <p>{item.price}</p>
       <button onClick={addItemToBasket}>Add to basket</button>
-      <button onClick={deleteItem}>Delete item</button>
+      <button onClick={() => deleteItem(item)}>Delete item</button>
     </>
   )
 }

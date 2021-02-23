@@ -1,15 +1,24 @@
 import {useState} from 'react';
 
-function ItemForm({room}){
+function ItemForm({room, createNewItem}){
 
   const [newItemName, setNewItemName] = useState(null);
   const [newItemBrand, setNewItemBrand] = useState(null);
   const [newItemPrice, setNewItemPrice] = useState(null);
   const [newItemUrl, setNewItemUrl] = useState(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (newItemName, newItemBrand, newItemPrice, newItemUrl != null) {
-      createNewItem();
+      createNewItem({
+        'name': `${newItemName}`,
+        'brand': `${newItemBrand}`,
+        'price': `${newItemPrice}`,
+        'sourceURL': `${newItemUrl}`,
+        'room': {
+          'id': `${room.id}`
+        }
+      });
     }
   };
 
@@ -37,25 +46,6 @@ function ItemForm({room}){
     setNewItemUrl(userInput);
     console.log(userInput);
   };
-
-  const createNewItem = () => {
-    fetch(`http://localhost:8080/rooms/${room.id}/items`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'name': `${newItemName}`,
-        'brand': `${newItemBrand}`,
-        'price': `${newItemPrice}`,
-        'sourceURL': `${newItemUrl}`,
-        'room': {
-          'id': `${room.id}`
-        }
-      })
-    })
-    .then(res => console.log(res.status))
-  }
 
   return (
     <>
