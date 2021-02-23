@@ -31,8 +31,13 @@ function App() {
       fetch(`http://localhost:8080/houses/${house.id}`, {
         method: 'DELETE',
       })
-      .then(res => console.log(res.status))
-    }
+      .then(data => {
+        const newHouses = houses.filter(oldHouse => {
+          return house.id !== oldHouse.id
+        })
+        setHouses(newHouses)
+      });
+    };
 
     return (
       <li>

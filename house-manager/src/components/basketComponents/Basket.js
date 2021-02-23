@@ -1,23 +1,17 @@
+import {useState, useEffect} from 'react';
 
-
-function Basket ({house}) {
+function Basket ({house, deleteItem}) {
 
     if (!house.basket) {
         return null;
     }
 
     const basketNodes = house.basket.basketItems.map(item => {
-        const deleteItem = () => {
-            fetch(`http://localhost:8080/houses/${house.id}/basket/${item.id}`, {
-                method: 'DELETE'
-            })
-            .then(res => console.log(res.status))
-        }
         
         return (
             <>
                 <p>{item.name}, {item.brand} - {item.price}</p> 
-                <button onClick={deleteItem}>Remove From Basket</button>
+                <button onClick={ () => deleteItem(item)}>Remove From Basket</button>
             </>
         )
     })

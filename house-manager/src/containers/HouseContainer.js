@@ -15,6 +15,18 @@ function HouseContainer({house}){
     }
   )};
 
+  const deleteRoom = (room) => {
+    fetch(`http://localhost:8080/houses/${room.house.id}/rooms/${room.id}`, {
+      method: 'DELETE',
+    })
+    .then(data => {
+      const newRooms = rooms.filter(oldRoom => {
+        return room.id !== oldRoom.id
+      })
+      setRooms(newRooms);
+    })
+  }
+
   useEffect(() => {
     getRoomsFromHouse();
   }, []);
@@ -22,7 +34,7 @@ function HouseContainer({house}){
   const roomNodes = rooms.map(room => {
     return (
       <>
-        <Room house ={house} room={room} key={room.id}/>
+        <Room deleteRoom={deleteRoom} house ={house} room={room} key={room.id}/>
       </>
     )
   });

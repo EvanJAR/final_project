@@ -8,8 +8,7 @@ function ItemForm({room, createNewItem}){
   const [newItemUrl, setNewItemUrl] = useState(null);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    if (newItemName, newItemBrand, newItemPrice, newItemUrl != null) {
+    if (newItemName && newItemBrand && newItemPrice && newItemUrl != null) {
       createNewItem({
         'name': `${newItemName}`,
         'brand': `${newItemBrand}`,
