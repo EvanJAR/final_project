@@ -22,6 +22,7 @@ function NavBar({house}){
         const newBasket = basketItems.filter(oldItem => {
             return item.id !== oldItem.id
         })
+        console.log(newBasket)
         setBasketItems(newBasket);
         console.log(basketItems)
     });
