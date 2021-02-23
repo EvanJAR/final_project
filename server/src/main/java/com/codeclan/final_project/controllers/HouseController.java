@@ -44,4 +44,10 @@ public class HouseController {
         houseRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+//    @DeleteMapping("/houses/{houseId}/basket/{itemId}")
+//    public ResponseEntity<HttpStatus> deleteBasketItem(@PathVariable Long houseId, @PathVariable Long itemId) {
+//        houseRepository.findItemByHouseId(itemId);
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//    }
 }

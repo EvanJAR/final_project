@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function HouseForm(){
+function HouseForm({basket}){
 
   const [newHouse, setNewHouse] = useState(null);
 

@@ -1,7 +1,6 @@
 package com.codeclan.final_project.controllers;
 
 import com.codeclan.final_project.models.Item;
-import com.codeclan.final_project.models.Room;
 import com.codeclan.final_project.repositories.ItemRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ public class ItemController {
 
     @Autowired
     ItemRepository itemRepository;
+
 
     @GetMapping("/rooms/items")
     public ResponseEntity<List<Item>> getAllRooms(){
@@ -48,4 +48,13 @@ public class ItemController {
         itemRepository.deleteById(itemId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+//delete basket items
+    @DeleteMapping("houses/{id}/basket/{itemId}")
+    public ResponseEntity<HttpStatus> deleteBasketItem(@PathVariable Long id, @PathVariable Long itemId) {
+        itemRepository.deleteById(itemId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 }

@@ -4,6 +4,7 @@ import HouseContainer from "./containers/HouseContainer";
 import {useState, useEffect} from 'react';
 import HouseForm from './components/houseComponents/HouseForm';
 
+
 function App() {
 
   //Use states
@@ -57,6 +58,8 @@ function App() {
     )
   });
 
+
+
   return (
     <Router>
 
@@ -72,7 +75,7 @@ function App() {
 
           {/* Creating a new house */}
           <div> 
-            <HouseForm/>
+            <HouseForm />
           </div>
 
 

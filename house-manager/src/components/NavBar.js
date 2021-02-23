@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-
+import Basket from './basketComponents/Basket';
 function NavBar({house}){
 
   return(
@@ -8,8 +8,7 @@ function NavBar({house}){
       <Link to="/">Welcome Page</Link>
       <Link to={`/house/${house.id}`}>{house.houseName}</Link>
       <div>
-        <p>List of basket items here</p>
-        <p>Button to checkout here</p>
+      <Basket house={house}/>
       </div>
       
     </>

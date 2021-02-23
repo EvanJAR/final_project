@@ -32,7 +32,7 @@ public class Item {
     private Room room;
 
     @ManyToMany
-    @JsonIgnoreProperties({"basketItems"})
+    @JsonIgnoreProperties({"basketItems", "house"})
     @JoinTable(
             name = "baskets_items",
             joinColumns = { @JoinColumn(

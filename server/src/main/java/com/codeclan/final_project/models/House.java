@@ -23,9 +23,15 @@ public class House {
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "basket_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"house"})
+    private Basket basket;
+
     public House(String houseName) {
         this.houseName = houseName;
         this.rooms = new ArrayList<>();
+        this.basket = new Basket(this);
     }
 
     public House() {
@@ -63,4 +69,15 @@ public class House {
         this.id = id;
     }
 
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
+    }
+
+    public void addItemToBasket(Item item){
+        this.basket.addBasketItem(item);
+    }
 }

@@ -86,17 +86,22 @@ public class DataLoader implements ApplicationRunner {
 
         //Baskets
         //Basket for house 1
-        Basket basket1 = new Basket();
-        basketRepository.save(basket1);
-        basket1.addBasketItem(item1);
-        basketRepository.save(basket1);
-
-        //Basket for house 2
-        Basket basket2 = new Basket();
-        basketRepository.save(basket2);
-        basket2.addBasketItem(item2);
-        basket2.addBasketItem(item3);
-        basketRepository.save(basket2);
+        house1.addItemToBasket(item1);
+        houseRepository.save(house1);
+//        Basket basket1 = new Basket();
+//        basketRepository.save(basket1);
+//        basket1.addBasketItem(item1);
+//        basketRepository.save(basket1);
+//
+//        //Basket for house 2
+        house2.addItemToBasket(item2);
+        house2.addItemToBasket(item3);
+        houseRepository.save(house2);
+//        Basket basket2 = new Basket();
+//        basketRepository.save(basket2);
+//        basket2.addBasketItem(item2);
+//        basket2.addBasketItem(item3);
+//        basketRepository.save(basket2);
     }
 
 }

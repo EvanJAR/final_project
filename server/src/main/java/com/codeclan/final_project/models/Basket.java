@@ -33,11 +33,19 @@ public class Basket {
                     nullable = false,
                     updatable = false
             )}
+
     )
     private List<Item> basketItems;
 
-    public Basket(){
+   @OneToOne(mappedBy = "basket")
+    private House house;
+
+    public Basket(House house){
+        this.house = house;
         this.basketItems = new ArrayList<>();
+    }
+
+    public Basket() {
     }
 
     public Long getId() {
@@ -62,6 +70,14 @@ public class Basket {
 
     public void clearBasket(){
         basketItems.clear();
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     @JsonIgnore
