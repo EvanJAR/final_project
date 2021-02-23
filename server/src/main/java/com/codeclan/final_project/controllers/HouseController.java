@@ -28,16 +28,11 @@ public class HouseController {
     }
 
     @PostMapping("/houses")
-    public ResponseEntity<House> createHouse(@RequestBody House house){
+    public ResponseEntity<House> createHouse(@RequestBody House houseBody){
+        House house = new House(houseBody.getHouseName());
         houseRepository.save(house);
         return new ResponseEntity<>(house, HttpStatus.CREATED);
     }
-
-//    @DeleteMapping("/houses/{id}")
-//    public ResponseEntity<Void> deleteHouse(@PathVariable Long id) {
-//        houseRepository.deleteById(id);
-//        return ResponseEntity.noContent().build();
-//    }
 
     @DeleteMapping("/houses/{id}")
     public ResponseEntity<HttpStatus> deleteHouse(@PathVariable Long id) {
@@ -45,9 +40,4 @@ public class HouseController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @DeleteMapping("/houses/{houseId}/basket/{itemId}")
-//    public ResponseEntity<HttpStatus> deleteBasketItem(@PathVariable Long houseId, @PathVariable Long itemId) {
-//        houseRepository.findItemByHouseId(itemId);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
 }

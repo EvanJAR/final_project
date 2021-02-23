@@ -17,12 +17,12 @@ function HouseContainer({house}){
 
   useEffect(() => {
     getRoomsFromHouse();
-  }, [rooms]);
+  }, []);
 
   const roomNodes = rooms.map(room => {
     return (
       <>
-        <Room room={room} key={room.id}/>
+        <Room house ={house} room={room} key={room.id}/>
       </>
     )
   });

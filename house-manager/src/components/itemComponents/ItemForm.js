@@ -54,7 +54,7 @@ function ItemForm({room}){
         }
       })
     })
-    .then(res => console.log(res.statusText))
+    .then(res => console.log(res.status))
   }
 
   return (

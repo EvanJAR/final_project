@@ -80,4 +80,8 @@ public class House {
     public void addItemToBasket(Item item){
         this.basket.addBasketItem(item);
     }
+
+    public void removeItemFromBasket(Item item) {
+        this.basket.removeBasketItem(item);
+    }
 }

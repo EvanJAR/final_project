@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     getAllHouses()
-  }, [houses]);
+  }, []);
 
   //Rendering buttons for each house
   const displayButtons = houses.map(house => {

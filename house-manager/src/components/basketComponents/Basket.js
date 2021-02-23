@@ -1,14 +1,18 @@
 
 
 function Basket ({house}) {
-   
+
+    if (!house.basket) {
+        return null;
+    }
+
     const basketNodes = house.basket.basketItems.map(item => {
         const deleteItem = () => {
             fetch(`http://localhost:8080/houses/${house.id}/basket/${item.id}`, {
                 method: 'DELETE'
             })
             .then(res => console.log(res.status))
-        }   
+        }
         
         return (
             <>
@@ -17,9 +21,6 @@ function Basket ({house}) {
             </>
         )
     })
-
-        
-   
 
     return (
         <>

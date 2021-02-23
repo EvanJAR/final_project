@@ -2,7 +2,7 @@ import Item from "../itemComponents/Item";
 import {useState, useEffect} from 'react';
 import ItemForm from "../itemComponents/ItemForm";
 
-function Room({room}){
+function Room({house, room}){
 
   const [items, setItems] = useState([]);
 
@@ -16,7 +16,7 @@ function Room({room}){
 
   useEffect(() => {
     getItemsFromRoom();
-  }, [items]);
+  }, []);
 
   const deleteRoom = () => {
     fetch(`http://localhost:8080/houses/${room.house.id}/rooms/${room.id}`, {
@@ -27,7 +27,7 @@ function Room({room}){
 
   const itemNodes = items.map(item => {
     return(
-      <Item item={item} key={item.id}/>
+      <Item house={house} item={item} key={item.id}/>
     )
   })
 

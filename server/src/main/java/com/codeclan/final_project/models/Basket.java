@@ -86,4 +86,11 @@ public class Basket {
                 .stream().mapToDouble(Item::getPrice).sum();
     }
 
+    public void removeBasketItem(Item item) {
+        basketItems.remove(item);
+    }
+
+    public int basketSize(){
+        return basketItems.size();
+    }
 }

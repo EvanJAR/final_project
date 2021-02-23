@@ -19,7 +19,7 @@ public class ItemController {
 
 
     @GetMapping("/rooms/items")
-    public ResponseEntity<List<Item>> getAllRooms(){
+    public ResponseEntity<List<Item>> getAllRoomItems(){
         List<Item> allItems = itemRepository.findAll();
         return new ResponseEntity<>(allItems, HttpStatus.OK);
     }
@@ -35,9 +35,9 @@ public class ItemController {
         return new ResponseEntity<>(itemRepository.findById(itemId), HttpStatus.OK);
     }
 
-
+    //
     @PostMapping("/rooms/{roomId}/items")
-    public ResponseEntity<Item> createRoom(@RequestBody Item item, @PathVariable Long roomId){
+    public ResponseEntity<Item> createItemInRoom(@RequestBody Item item, @PathVariable Long roomId){
         roomId = item.getRoom().getId();
         itemRepository.save(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
@@ -48,13 +48,5 @@ public class ItemController {
         itemRepository.deleteById(itemId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-//delete basket items
-    @DeleteMapping("houses/{id}/basket/{itemId}")
-    public ResponseEntity<HttpStatus> deleteBasketItem(@PathVariable Long id, @PathVariable Long itemId) {
-        itemRepository.deleteById(itemId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
 
 }
