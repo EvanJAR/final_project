@@ -1,8 +1,8 @@
-import './App.css';
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import HouseContainer from "./containers/HouseContainer";
 import {useState, useEffect} from 'react';
 import HouseForm from './components/houseComponents/HouseForm';
+import {Header, Segment} from 'semantic-ui-react';
 
 
 function App() {
@@ -73,10 +73,8 @@ function App() {
         <Route exact path="/">
           {/* Welcome message */}
           <div>
-            <h1>Welcome Page</h1>
-            <p>This is our app and this is how it is used</p>
+            <Header as="h1" textAlign="center" content="Welcome Page" subheader="This is our app and this is how it is used."/>
           </div>
-
 
           {/* Creating a new house */}
           <div> 

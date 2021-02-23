@@ -39,7 +39,7 @@ function HouseForm({basket}){
         <label>
           <input type="text" placeholder="Enter house name" required onChange={handleChange} />
         </label>
-        <input type="submit" value="submit"/>
+        <input type="submit" value="Submit"/>
       </form>
     </>
   )
