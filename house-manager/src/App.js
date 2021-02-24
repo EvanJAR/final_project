@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import HouseContainer from "./containers/HouseContainer";
 import {useState, useEffect} from 'react';
 import HouseForm from './components/houseComponents/HouseForm';
-import {Header, Segment} from 'semantic-ui-react';
+import {Container, Header, Button, List, Divider, Icon} from 'semantic-ui-react';
 import Checkout from './containers/Checkout';
 
 
@@ -55,12 +55,22 @@ function App() {
     };
 
     return (
-      <li key={house.id}>
-        <button>
-          <Link to={housePath}>{house.houseName}</Link>
-        </button>
-        <button onClick={deleteHouse}>Delete house</button>
-      </li>
+        <List.Item key={house.id} style={{padding: '10px'}}>
+          <List.Content floated="left">
+            <Button style={{marginLeft: '50px'}}>
+              <Link to={housePath}>
+                <List.Icon name="home" size="large"/>
+                {house.houseName}
+              </Link>
+            </Button>
+          </List.Content>
+          <List.Content floated="right">
+            <Button onClick={deleteHouse} style={{marginRight: '50px'}}>
+              <List.Icon name="delete" size="large"/>
+              Delete house
+            </Button>
+          </List.Content>
+        </List.Item>
     )
   });
 
@@ -86,24 +96,38 @@ function App() {
       <Switch>
 
         <Route exact path="/">
-          {/* Welcome message */}
-          <div>
-            <Header as="h1" textAlign="center" content="Welcome Page" subheader="This is our app and this is how it is used."/>
-          </div>
+          <Container>
+            <div style={{display: 'flex', flexFlow: 'row', alignItems: 'center'}}>
+              <div>
+                <List>
+                  <List.Item>
+                    <List.Icon name="github square"/>
+                    <List.Content><a href="https://github.com/EvanJAR">EvanJAR</a></List.Content>
+                  </List.Item>
+                </List>
+                <List>
+                  <List.Item>
+                    <List.Icon name="github square"/>
+                    <List.Content><a href="https://github.com/4Bics">4Bics</a></List.Content>
+                  </List.Item>
+                </List>
+              </div>
+              <div style={{marginLeft: '150px'}}>
+                <Header as="h1" textAlign="center" subheader="This is our app and this is how it is used." style={{padding: '25px'}}>
+                  <Icon name="home"/>
+                  YourHouse
+                </Header>
+              </div>
+            </div>
 
-          {/* Creating a new house */}
-          <div> 
             <HouseForm createNewHouse={createNewHouse}/>
-          </div>
 
-
-          {/* Selecting house that already exists */}
-          <div>
-            <h3>Select your house</h3>
-            <ul>
+            <Header as="h3" content="Select your house" textAlign="center"/>
+            <Divider horizontal><Icon name="angle double down"/></Divider>
+            <List selection verticalAlign="middle">
               {displayButtons}
-            </ul>
-          </div>
+            </List>
+          </Container>
         </Route>
 
         {/* Creating routes for each element by mapping over each house in houses */}

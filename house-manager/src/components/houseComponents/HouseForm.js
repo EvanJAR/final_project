@@ -23,7 +23,9 @@ function HouseForm({createNewHouse}){
 
   return (
     <>
-      <Form onSubmit={handleSubmit} >
+      <Form onSubmit={handleSubmit} style={{
+              padding: '25px'
+            }}>
         <Form.Field>
           <label>Create a house </label>
           <input required type="text" onChange={handleChange} placeholder='House name..' />
