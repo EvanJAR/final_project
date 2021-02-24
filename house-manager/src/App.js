@@ -99,7 +99,7 @@ function App() {
           <Container>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <div>
-                <Header as="h1" textAlign="center" subheader="This is our app and this is how it is used." style={{padding: '20px', marginTop: '15px'}}>
+                <Header as="h1" textAlign="center" style={{padding: '20px', marginTop: '15px'}}>
                   <Icon name="home"/>
                   YourHouse
                 </Header>

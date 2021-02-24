@@ -101,7 +101,7 @@ function HouseContainer({house}){
     fetch(`http://localhost:8080/houses/${house.id}/basket/items/total`)
     .then(res => res.json())
     .then(data => {
-        setBasketTotal(data);
+        setBasketTotal(parseFloat(data).toFixed(2));
     });
   }
 
@@ -113,7 +113,7 @@ function HouseContainer({house}){
   const roomNodes = rooms.map(room => {
     return (
       <Segment>
-        <Room addItemToBasket={addItemToBasket} deleteRoom={deleteRoom} house ={house} room={room} key={room.id}/>
+        <Room basketItems={basketItems} deleteBasketItem={deleteBasketItem} addItemToBasket={addItemToBasket} deleteRoom={deleteRoom} house ={house} room={room} key={room.id}/>
       </Segment>
     )
   });

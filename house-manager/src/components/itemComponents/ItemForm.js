@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {Header, Form, Button, Input} from 'semantic-ui-react';
 
 function ItemForm({room, createNewItem}){
 
@@ -46,16 +47,17 @@ function ItemForm({room, createNewItem}){
 
   return (
     <>
-      <h2>Create an item</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input type="text" placeholder="Enter item name" required onChange={handleNameChange} />
-          <input type="text" placeholder="Enter brand name" required onChange={handleBrandChange} />
-          <input type="number" step="0.01" placeholder="Enter price" required onChange={handlePriceChange} />
-          {/* <input type="url" placeholder="Enter url" required onChange={handleUrlChange} /> */}
-        </label>
-        <input type="submit" value="submit"/>
-      </form>
+      <Header>Create an item</Header>
+      <Form onSubmit={handleSubmit} style={{
+              padding: '25px'
+            }}>
+        <Form.Field>
+          <Input size='mini' type="text" placeholder="Enter item name" required onChange={handleNameChange} />
+          <Input size='mini' type="text" placeholder="Enter brand name" required onChange={handleBrandChange} />
+          <Input size='mini' type="number" step="0.01" placeholder="Enter price" required onChange={handlePriceChange} />
+        </Form.Field>
+        <Button type='submit'>Submit</Button>
+      </Form>
     </>
   )
 };

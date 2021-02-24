@@ -14,7 +14,6 @@ function NavBar({house, basketItems, deleteBasketItem, basketTotal}){
         </div>
         <div>
           <Basket basketTotal={basketTotal} deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
-          <Link to="/checkout">Checkout</Link>
         </div>
       </div>
     </Container>
