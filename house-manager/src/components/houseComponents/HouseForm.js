@@ -11,7 +11,6 @@ function HouseForm({createNewHouse}){
     if (newHouse != null) {
       createNewHouse(newHouse);
     }
-
   }
 
   //Handling the text input for changing the newHouse state

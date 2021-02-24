@@ -1,6 +1,7 @@
 import BasketItem from "./BasketItem";
+import {useState, useEffect} from 'react';
 
-function Basket ({house, deleteBasketItem, basketItems}) {
+function Basket ({house, deleteBasketItem, basketItems, basketTotal}) {
 
     if (!house.basket) {
         return null;
@@ -8,14 +9,14 @@ function Basket ({house, deleteBasketItem, basketItems}) {
 
     const basketNodes = basketItems.map((item, index) => {
         return (
-            <BasketItem  deleteBasketItem={deleteBasketItem} house={house} item={item} key={index}/>
+            <BasketItem deleteBasketItem={deleteBasketItem} house={house} item={item} key={index}/>
         )
     })
 
     return (
         <>
-        <p>Basket items go here</p>
-        {basketNodes}
+            {basketNodes}
+            <p>Basket total: £{basketTotal}</p>
         </>
     )
 }

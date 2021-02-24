@@ -1,17 +1,19 @@
 import {Link} from "react-router-dom";
 import Basket from '../components/basketComponents/Basket';
-import {Container} from 'semantic-ui-react'
+import {Container, Header} from 'semantic-ui-react'
 
-function NavBar({house, basketItems, deleteBasketItem}){
+function NavBar({house, basketItems, deleteBasketItem, basketTotal}){
 
   return(
     <Container>
-      <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+      <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px'}}>
         <div>
-          <Link to="/">Welcome Page</Link>
+          <Header>
+            <Link to="/">Welcome Page</Link>
+          </Header>
         </div>
         <div>
-          <Basket deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
+          <Basket basketTotal={basketTotal} deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
           <Link to="/checkout">Checkout</Link>
         </div>
       </div>

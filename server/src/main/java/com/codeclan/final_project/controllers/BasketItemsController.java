@@ -51,4 +51,12 @@ public class BasketItemsController {
         List<Item> basketItems = house.getBasket().getBasketItems();
         return new ResponseEntity<>(basketItems, HttpStatus.OK);
     }
+
+    @GetMapping("/houses/{houseId}/basket/items/total")
+    public ResponseEntity<Double> getPriceOfBasket(@PathVariable Long houseId){
+        Optional<House> optionalHouse = houseRepository.findById(houseId);
+        House house = optionalHouse.get();
+        Double basketTotal = house.getBasket().getTotalPrice();
+        return new ResponseEntity<>(basketTotal, HttpStatus.OK);
+    }
 }

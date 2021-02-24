@@ -52,6 +52,7 @@ function HouseContainer({house}){
   }, []);
 
   const [basketItems, setBasketItems] = useState([]);
+  const [basketTotal, setBasketTotal] = useState(0);
 
   const getBasketItems = () => {
     fetch(`http://localhost:8080/houses/${house.id}/basket/items`)
@@ -81,6 +82,7 @@ function HouseContainer({house}){
     .then(res => res.json())
     .then(data => {
       setBasketItems(data)
+      getTotalBasketPrice();
     })
   };
 
@@ -91,8 +93,17 @@ function HouseContainer({house}){
     .then(res => res.json())
     .then(data => {
       setBasketItems(data);
+      getTotalBasketPrice();
     });
   };
+
+  const getTotalBasketPrice = () => {
+    fetch(`http://localhost:8080/houses/${house.id}/basket/items/total`)
+    .then(res => res.json())
+    .then(data => {
+        setBasketTotal(data);
+    });
+  }
 
   useEffect(() => {
       getBasketItems();
@@ -106,7 +117,7 @@ function HouseContainer({house}){
 
   return (
     <Container>
-      <NavBar deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
+      <NavBar  basketTotal={basketTotal} deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
       {roomNodes}
       <RoomForm house={house} key={house.id} createNewRoom={createNewRoom}/>
     </Container>
