@@ -1,5 +1,5 @@
 import BasketItem from "./BasketItem";
-import {Icon, Segment} from 'semantic-ui-react';
+import {Icon, Segment, Divider} from 'semantic-ui-react';
 
 function Basket ({house, deleteBasketItem, basketItems, basketTotal}) {
 
@@ -19,10 +19,15 @@ function Basket ({house, deleteBasketItem, basketItems, basketTotal}) {
 
     return (
         <Segment>
-            {basketNodes}
-            <div style={{display:'flex', justifyContent:'space-between', marginTop:'5px'}}>
-                <p>Basket total: £{basketTotal}</p>
-                <Icon name='cart'/>
+            <div style={{padding:'10px'}}>
+                {basketNodes}
+            </div>
+            <Divider/>
+            <div style={{padding: '10pxs'}}>
+                <div style={{display:'flex', justifyContent:'space-between', marginTop:'5px'}}>
+                    <p>Basket total: £{basketTotal}</p>
+                    <Icon name='cart'/>
+                </div>
             </div>
         </Segment>
     );
