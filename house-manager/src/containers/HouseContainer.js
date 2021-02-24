@@ -2,6 +2,7 @@ import Room from "../components/roomComponents/Room";
 import {useState, useEffect} from 'react';
 import NavBar from './NavBar'
 import RoomForm from "../components/roomComponents/RoomForm";
+import {Container} from 'semantic-ui-react';
 
 function HouseContainer({house}){
 
@@ -104,15 +105,11 @@ function HouseContainer({house}){
   });
 
   return (
-    <>
-    <div>
+    <Container>
       <NavBar deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
-    </div>
-    <div>
       {roomNodes}
-    </div>
-    <RoomForm house={house} key={house.id} createNewRoom={createNewRoom}/>
-    </>
+      <RoomForm house={house} key={house.id} createNewRoom={createNewRoom}/>
+    </Container>
   )
 }
 

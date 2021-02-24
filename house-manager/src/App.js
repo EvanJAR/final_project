@@ -55,7 +55,7 @@ function App() {
     };
 
     return (
-        <List.Item key={house.id} style={{padding: '10px'}}>
+        <List.Item key={house.id} style={{padding: '10px', marginTop: '10px'}}>
           <List.Content floated="left">
             <Button style={{marginLeft: '50px'}}>
               <Link to={housePath}>
@@ -123,7 +123,9 @@ function App() {
             <HouseForm createNewHouse={createNewHouse}/>
 
             <Header as="h3" content="Select your house" textAlign="center"/>
-            <Divider horizontal><Icon name="angle double down"/></Divider>
+
+            <Divider horizontal style={{marginBottom: '30px'}}><Icon name="angle double down"/></Divider>
+
             <List  verticalAlign="middle">
               {displayButtons}
             </List>
