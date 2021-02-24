@@ -15,7 +15,6 @@ function Room({house, room, addItemToBasket, deleteRoom}){
   };
 
   const createNewItem = (item) => {
-    console.log(items);
     fetch(`http://localhost:8080/rooms/${room.id}/items`, {
       method: 'POST',
       headers: {
@@ -24,8 +23,7 @@ function Room({house, room, addItemToBasket, deleteRoom}){
       body: JSON.stringify(item)
     })
     .then(res => res.json())
-    .then(data => setItems([...items, data]))
-    console.log(items);
+    .then(data => setItems(data))
   };
 
   const deleteItem = (item) => {

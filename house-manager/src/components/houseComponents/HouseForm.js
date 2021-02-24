@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Form, Checkbox, Button} from 'semantic-ui-react';
+import {Form, Button} from 'semantic-ui-react';
 
 function HouseForm({createNewHouse}){
 
@@ -10,7 +10,8 @@ function HouseForm({createNewHouse}){
     event.preventDefault()
     if (newHouse != null) {
       createNewHouse(newHouse);
-    } 
+    }
+
   }
 
   //Handling the text input for changing the newHouse state

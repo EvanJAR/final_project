@@ -36,10 +36,10 @@ public class ItemController {
     }
 
     @PostMapping("/rooms/{roomId}/items")
-    public ResponseEntity<Item> createItemInRoom(@RequestBody Item item, @PathVariable Long roomId){
-        roomId = item.getRoom().getId();
+    public ResponseEntity<List<Item>> createItemInRoom(@RequestBody Item item, @PathVariable Long roomId){
         itemRepository.save(item);
-        return new ResponseEntity<>(item, HttpStatus.CREATED);
+        List<Item> allItems = itemRepository.findByRoomId(roomId);
+        return new ResponseEntity<>(allItems, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/rooms/{roomId}/items/{itemId}")
