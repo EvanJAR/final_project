@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {Form, Checkbox, Button} from 'semantic-ui-react';
 
 function HouseForm({basket}){
 
@@ -34,13 +35,23 @@ function HouseForm({basket}){
 
   return (
     <>
-      <h2>Create a house</h2>
-      <form onSubmit={handleSubmit}>
+      {/* <h2>Create a house</h2>
+      <form >
         <label>
           <input type="text" placeholder="Enter house name" required onChange={handleChange} />
         </label>
         <input type="submit" value="Submit"/>
-      </form>
+      </form> */}
+      <Form>
+        <Form.Field>
+          <label>Create a house </label>
+          <input required type="text" onChange={handleChange} placeholder='House name..' />
+        </Form.Field>
+        <Form.Field>
+          <Checkbox label='I agree to the Terms and Conditions' />
+        </Form.Field>
+        <Button type='submit' onSubmit={handleSubmit}>Submit</Button>
+      </Form>
     </>
   )
 }
