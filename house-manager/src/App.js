@@ -97,34 +97,34 @@ function App() {
 
         <Route exact path="/">
           <Container>
-            <div style={{display: 'flex', flexFlow: 'row', alignItems: 'center'}}>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <div>
-                <List>
-                  <List.Item>
-                    <List.Icon name="github square"/>
-                    <List.Content><a href="https://github.com/EvanJAR">EvanJAR</a></List.Content>
-                  </List.Item>
-                </List>
-                <List>
-                  <List.Item>
-                    <List.Icon name="github square"/>
-                    <List.Content><a href="https://github.com/4Bics">4Bics</a></List.Content>
-                  </List.Item>
-                </List>
-              </div>
-              <div style={{marginLeft: '150px'}}>
-                <Header as="h1" textAlign="center" subheader="This is our app and this is how it is used." style={{padding: '25px'}}>
+                <Header as="h1" textAlign="center" subheader="This is our app and this is how it is used." style={{padding: '20px', marginTop: '15px'}}>
                   <Icon name="home"/>
                   YourHouse
                 </Header>
               </div>
+              <div>
+                <List floated='right' style={{marginTop: '15px'}}>
+                  <List.Item>
+                    <List.Content><a href="https://github.com/EvanJAR" style={{textDecoration: 'none', color: 'black'}}>Evan Reid - EvanJAR <List.Icon name="github square"/></a></List.Content>
+                  </List.Item>
+                </List>
+                <List>
+                  <List.Item>
+                    <List.Content><a href="https://github.com/4Bics" style={{textDecoration: 'none', color: 'black'}}>Cameron Maclean - 4Bics <List.Icon name="github square"/></a></List.Content>
+                  </List.Item>
+                </List>
+              </div>
             </div>
+
+            <Divider/>
 
             <HouseForm createNewHouse={createNewHouse}/>
 
             <Header as="h3" content="Select your house" textAlign="center"/>
             <Divider horizontal><Icon name="angle double down"/></Divider>
-            <List selection verticalAlign="middle">
+            <List  verticalAlign="middle">
               {displayButtons}
             </List>
           </Container>
