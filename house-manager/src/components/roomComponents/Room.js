@@ -51,12 +51,20 @@ function Room({house, room, addItemToBasket, deleteRoom, deleteBasketItem}){
 
   return(
     <>
-    <div style={{display: 'flex', flexDirection: 'flow', alignItems: 'start'}}>
-      <Header>{room.name}</Header>
-      <Icon name='remove' onClick={ () => deleteRoom(room)} style={{marginLeft: '15px'}}/>
-    </div>
-      <>{itemNodes}</>
-      <ItemForm createNewItem={createNewItem} room={room}/>
+      <div style={{padding: '20px', display:'flex', justifyContent: 'center'}}>
+        <Header size='large' textAlign='center'>
+          {room.name}
+        </Header>
+        <div>
+          <Icon name='minus square' onClick={ () => deleteRoom(room)} style={{marginLeft: '15px'}}/>
+        </div>
+      </div>
+      <div>
+        <div style={{paddingBottom: '20px'}}>
+          {itemNodes}
+        </div>
+        <ItemForm createNewItem={createNewItem} room={room}/>
+      </div>
     </>
   )
 }

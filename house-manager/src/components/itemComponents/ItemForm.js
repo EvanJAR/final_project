@@ -46,19 +46,23 @@ function ItemForm({room, createNewItem}){
   // };
 
   return (
-    <>
-      <Header>Create an item</Header>
-      <Form onSubmit={handleSubmit} style={{
-              padding: '25px'
-            }}>
-        <Form.Field>
-          <Input size='mini' type="text" placeholder="Enter item name" required onChange={handleNameChange} />
-          <Input size='mini' type="text" placeholder="Enter brand name" required onChange={handleBrandChange} />
-          <Input size='mini' type="number" step="0.01" placeholder="Enter price" required onChange={handlePriceChange} />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
+    <div style={{display:'flex', flexDirection:'column'}}>
+      <Header textAlign='left'>Create an item</Header>
+      <Form onSubmit={handleSubmit}>
+        <div style={{display:'flex', justifyContent:'space-evenly', alignItems:'center'}}>
+          <div>
+            <Form.Field>
+              <Input size='mini' type="text" placeholder="Enter item name" required onChange={handleNameChange} />
+              <Input size='mini' type="text" placeholder="Enter brand name" required onChange={handleBrandChange} />
+              <Input size='mini' type="number" step="0.01" placeholder="Enter price" required onChange={handlePriceChange} />
+            </Form.Field>
+          </div>
+          <div>
+            <Button floated='right' size='mini' type='submit'>Submit</Button>
+          </div>
+        </div>
       </Form>
-    </>
+    </div>
   )
 };
 

@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {Button, Segment, Form, Header, Input} from 'semantic-ui-react';
 
 function RoomForm({house, createNewRoom}){
 
@@ -26,26 +27,32 @@ function RoomForm({house, createNewRoom}){
 
   return(
 
-    <>
-      <h2>Create a room</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input type="text" placeholder="Enter room name" required onChange={handleRoomName} />
-        </label>
-        <select onChange={handleRoomTypeSelect}>
-          <option value="">Choose a room type</option>
-          <option value="KITCHEN">Kitchen</option>
-          <option value="BATHROOM">Bathroom</option>
-          <option value="BEDROOM">Bedroom</option>
-          <option value="HALLWAY">Hallway</option>
-          <option value="LIVINGROOM">Living room</option>
-          <option value="UTILITYROOM">Utility room</option>
-          <option value="OFFICE">Office</option>
-          <option value="OTHER">Other</option>
-        </select>
-        <input type="submit" value="submit"/>
-      </form>
-    </>
+    <Segment>
+      <Header>Create a room</Header>
+      <Form onSubmit={handleSubmit}>
+        <div style={{display:'flex', flexFlow:'nowrap', justifyContent:'space-around', alignItems:'center'}}>
+          <div>
+            <Input type="text" placeholder="Enter room name" required onChange={handleRoomName} />
+          </div>
+          <div>
+            <select onChange={handleRoomTypeSelect}>
+              <option value="">Choose a room type</option>
+              <option value="KITCHEN">Kitchen</option>
+              <option value="BATHROOM">Bathroom</option>
+              <option value="BEDROOM">Bedroom</option>
+              <option value="HALLWAY">Hallway</option>
+              <option value="LIVINGROOM">Living room</option>
+              <option value="UTILITYROOM">Utility room</option>
+              <option value="OFFICE">Office</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </div>
+          <div>
+            <Button size='mini' type="submit">Submit</Button>
+          </div>
+        </div>
+      </Form>
+    </Segment>
   )
 }
 

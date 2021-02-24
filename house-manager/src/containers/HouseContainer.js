@@ -2,7 +2,7 @@ import Room from "../components/roomComponents/Room";
 import {useState, useEffect} from 'react';
 import NavBar from './NavBar'
 import RoomForm from "../components/roomComponents/RoomForm";
-import {Container, Segment} from 'semantic-ui-react';
+import {Container, Segment, Divider} from 'semantic-ui-react';
 
 function HouseContainer({house}){
 
@@ -103,7 +103,7 @@ function HouseContainer({house}){
     .then(data => {
         setBasketTotal(parseFloat(data).toFixed(2));
     });
-  }
+  };
 
   useEffect(() => {
       getBasketItems();
@@ -121,7 +121,9 @@ function HouseContainer({house}){
   return (
     <Container>
       <NavBar  basketTotal={basketTotal} deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>
+      <Divider/>
       {roomNodes}
+      <Divider/>
       <RoomForm house={house} key={house.id} createNewRoom={createNewRoom}/>
     </Container>
   )
