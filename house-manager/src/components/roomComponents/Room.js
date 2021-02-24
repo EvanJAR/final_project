@@ -1,6 +1,7 @@
 import Item from "../itemComponents/Item";
 import {useState, useEffect} from 'react';
 import ItemForm from "../itemComponents/ItemForm";
+import { Header, Icon } from "semantic-ui-react";
 
 function Room({house, room, addItemToBasket, deleteRoom}){
 
@@ -50,8 +51,10 @@ function Room({house, room, addItemToBasket, deleteRoom}){
 
   return(
     <>
-      <h4>{room.name}</h4>
-      <button onClick={ () => deleteRoom(room)}>Delete room</button>
+    <div style={{display: 'flex', flexDirection: 'flow', alignItems: 'start'}}>
+      <Header>{room.name}</Header>
+      <Icon name='remove' onClick={ () => deleteRoom(room)} style={{marginLeft: '15px'}}/>
+    </div>
       <>{itemNodes}</>
       <ItemForm createNewItem={createNewItem} room={room}/>
     </>

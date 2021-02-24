@@ -2,7 +2,7 @@ import Room from "../components/roomComponents/Room";
 import {useState, useEffect} from 'react';
 import NavBar from './NavBar'
 import RoomForm from "../components/roomComponents/RoomForm";
-import {Container} from 'semantic-ui-react';
+import {Container, Segment} from 'semantic-ui-react';
 
 function HouseContainer({house}){
 
@@ -107,11 +107,14 @@ function HouseContainer({house}){
 
   useEffect(() => {
       getBasketItems();
+      getTotalBasketPrice();
   }, []);
 
   const roomNodes = rooms.map(room => {
     return (
-      <Room addItemToBasket={addItemToBasket} deleteRoom={deleteRoom} house ={house} room={room} key={room.id}/>
+      <Segment>
+        <Room addItemToBasket={addItemToBasket} deleteRoom={deleteRoom} house ={house} room={room} key={room.id}/>
+      </Segment>
     )
   });
 

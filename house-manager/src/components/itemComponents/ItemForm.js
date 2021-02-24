@@ -5,16 +5,16 @@ function ItemForm({room, createNewItem}){
   const [newItemName, setNewItemName] = useState(null);
   const [newItemBrand, setNewItemBrand] = useState(null);
   const [newItemPrice, setNewItemPrice] = useState(null);
-  const [newItemUrl, setNewItemUrl] = useState(null);
+  // const [newItemUrl, setNewItemUrl] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (newItemName && newItemBrand && newItemPrice && newItemUrl != null) {
+    if (newItemName && newItemBrand && newItemPrice != null) {
       createNewItem({
         'name': `${newItemName}`,
         'brand': `${newItemBrand}`,
         'price': `${newItemPrice}`,
-        'sourceURL': `${newItemUrl}`,
+        'sourceURL': 'http://www.google.com',
         'room': {
           'id': `${room.id}`
         }
@@ -37,11 +37,12 @@ function ItemForm({room, createNewItem}){
     const userInput = event.target.value;
     setNewItemPrice(userInput);
   };
-  const handleUrlChange = (event) => {
-    event.preventDefault();
-    const userInput = event.target.value;
-    setNewItemUrl(userInput);
-  };
+
+  // const handleUrlChange = (event) => {
+  //   event.preventDefault();
+  //   const userInput = event.target.value;
+  //   setNewItemUrl(userInput);
+  // };
 
   return (
     <>
@@ -51,7 +52,7 @@ function ItemForm({room, createNewItem}){
           <input type="text" placeholder="Enter item name" required onChange={handleNameChange} />
           <input type="text" placeholder="Enter brand name" required onChange={handleBrandChange} />
           <input type="number" step="0.01" placeholder="Enter price" required onChange={handlePriceChange} />
-          <input type="url" placeholder="Enter url" required onChange={handleUrlChange} />
+          {/* <input type="url" placeholder="Enter url" required onChange={handleUrlChange} /> */}
         </label>
         <input type="submit" value="submit"/>
       </form>
