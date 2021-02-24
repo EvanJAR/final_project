@@ -1,14 +1,14 @@
 import BasketItem from "./BasketItem";
 
-function Basket ({house, deleteBasketItem}) {
+function Basket ({house, deleteBasketItem, basketItems}) {
 
     if (!house.basket) {
         return null;
     }
 
-    const basketNodes = house.basket.basketItems.map(item => {
+    const basketNodes = basketItems.map((item, index) => {
         return (
-            <BasketItem  deleteBasketItem={deleteBasketItem} house={house} item={item}/>
+            <BasketItem  deleteBasketItem={deleteBasketItem} house={house} item={item} key={index}/>
         )
     })
 

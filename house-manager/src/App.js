@@ -3,6 +3,7 @@ import HouseContainer from "./containers/HouseContainer";
 import {useState, useEffect} from 'react';
 import HouseForm from './components/houseComponents/HouseForm';
 import {Header, Segment} from 'semantic-ui-react';
+import Checkout from './containers/Checkout';
 
 
 function App() {
@@ -22,6 +23,20 @@ function App() {
     getAllHouses()
   }, []);
 
+  const createNewHouse = (houseName) => {
+    fetch('http://localhost:8080/houses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'houseName': houseName
+      })
+    })
+    .then(res => res.json())
+    .then(data => setHouses(data))
+  }
+
   //Rendering buttons for each house
   const displayButtons = houses.map(house => {
 
@@ -40,7 +55,7 @@ function App() {
     };
 
     return (
-      <li>
+      <li key={house.id}>
         <button>
           <Link to={housePath}>{house.houseName}</Link>
         </button>
@@ -56,8 +71,8 @@ function App() {
 
     return (
 
-      <Route path={housePath}>
-        <HouseContainer house={house} key={house.id}/> 
+      <Route path={housePath} key={house.id}>
+        <HouseContainer house={house}/> 
       </Route>
 
     )
@@ -78,7 +93,7 @@ function App() {
 
           {/* Creating a new house */}
           <div> 
-            <HouseForm />
+            <HouseForm createNewHouse={createNewHouse}/>
           </div>
 
 
@@ -93,6 +108,10 @@ function App() {
 
         {/* Creating routes for each element by mapping over each house in houses */}
         {createHouseRoutes}
+
+        <Route exact path ="/checkout">
+          <Checkout></Checkout>
+        </Route>
         
       </Switch>
     </Router>

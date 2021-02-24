@@ -1,17 +1,18 @@
 import {useState} from 'react';
 
-function RoomForm({house}){
+function RoomForm({house, createNewRoom}){
 
   const [newRoom, setNewRoom] = useState(null);
   const [roomType, setRoomType] = useState(null);
 
-  const handleSubmit = () => {
-    if (newRoom != null) {
-      createNewRoom();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (newRoom && roomType != null) {
+      createNewRoom(newRoom, roomType);
     }
   };
 
-  const handleChange = (event) => {
+  const handleRoomName = (event) => {
     event.preventDefault();
     const userInput = event.target.value;
     setNewRoom(userInput);
@@ -23,30 +24,13 @@ function RoomForm({house}){
     setRoomType(userInput);
   };
 
-  const createNewRoom = () => {
-    fetch(`http://localhost:8080/houses/${house.id}/rooms`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'name': `${newRoom}`,
-        'roomType': `${roomType}`,
-        'house': {
-          'id': `${house.id}`
-        }
-      })
-    })
-    .then(res => console.log(res.statusText))
-  }
-
   return(
 
     <>
       <h2>Create a room</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          <input type="text" placeholder="Enter room name" required onChange={handleChange} />
+          <input type="text" placeholder="Enter room name" required onChange={handleRoomName} />
         </label>
         <select onChange={handleRoomTypeSelect}>
           <option value="">Choose a room type</option>

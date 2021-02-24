@@ -28,10 +28,11 @@ public class HouseController {
     }
 
     @PostMapping("/houses")
-    public ResponseEntity<House> createHouse(@RequestBody House houseBody){
+    public ResponseEntity<List<House>> createHouse(@RequestBody House houseBody){
         House house = new House(houseBody.getHouseName());
         houseRepository.save(house);
-        return new ResponseEntity<>(house, HttpStatus.CREATED);
+        List<House> allHouses = houseRepository.findAll();
+        return new ResponseEntity<>(allHouses, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/houses/{id}")

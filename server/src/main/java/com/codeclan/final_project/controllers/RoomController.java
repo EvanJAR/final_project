@@ -39,10 +39,10 @@ public class RoomController {
     }
 
     @PostMapping("/houses/{houseId}/rooms")
-    public ResponseEntity<Room> createRoom(@RequestBody Room room, @PathVariable Long houseId){
-        houseId = room.getHouse().getId();
+    public ResponseEntity<List<Room>> createRoom(@RequestBody Room room, @PathVariable Long houseId){
         roomRepository.save(room);
-        return new ResponseEntity<>(room, HttpStatus.CREATED);
+        List<Room> allRooms = roomRepository.findByHouseId(houseId);
+        return new ResponseEntity<>(allRooms, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/houses/{houseId}/rooms/{roomId}")

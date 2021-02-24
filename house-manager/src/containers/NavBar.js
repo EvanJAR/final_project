@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import Basket from './basketComponents/Basket';
+import Basket from '../components/basketComponents/Basket';
 
 function NavBar({house, basketItems, deleteBasketItem}){
 
@@ -7,6 +7,7 @@ function NavBar({house, basketItems, deleteBasketItem}){
     <>
       <Link to="/">Welcome Page</Link>
       <Basket deleteBasketItem={deleteBasketItem} basketItems={basketItems} house={house} key={house.id}/>      
+      <Link to="/checkout">Checkout</Link>
     </>
   )
 }

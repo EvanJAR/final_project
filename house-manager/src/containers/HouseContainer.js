@@ -1,6 +1,6 @@
 import Room from "../components/roomComponents/Room";
 import {useState, useEffect} from 'react';
-import NavBar from '../components/NavBar'
+import NavBar from './NavBar'
 import RoomForm from "../components/roomComponents/RoomForm";
 
 function HouseContainer({house}){
@@ -14,6 +14,25 @@ function HouseContainer({house}){
       setRooms(data);
     }
   )};
+
+  const createNewRoom = (roomName, roomType) => {
+    fetch(`http://localhost:8080/houses/${house.id}/rooms`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'name': roomName,
+        'roomType': roomType,
+        'house': {
+          'id': house.id
+        }
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      setRooms(data)})
+  }
 
   const deleteRoom = (room) => {
     fetch(`http://localhost:8080/houses/${room.house.id}/rooms/${room.id}`, {
@@ -42,31 +61,35 @@ function HouseContainer({house}){
   };
 
   const addItemToBasket = (item) => {
-    console.log(basketItems);
     fetch(`http://localhost:8080/houses/${house.id}/basket/items`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(item)
+      body: JSON.stringify({
+        "id": item.id,
+        "name": item.name,
+        "brand": item.brand,
+        "price": item.price,
+        "sourceURL": item.sourceURL,
+        "room": {
+          "id": item.room.id
+        }
+      }	)
     })
     .then(res => res.json())
-    .then(data => setBasketItems([...basketItems, data]))
-    console.log(basketItems);
+    .then(data => {
+      setBasketItems(data)
+    })
   };
 
   const deleteBasketItem = (item) => {
     fetch(`http://localhost:8080/houses/${house.id}/basket/${item.id}`, {
         method: 'DELETE',
     })
+    .then(res => res.json())
     .then(data => {
-        const newBasketItems = basketItems.filter(oldItem => {
-            return item.id !== oldItem.id
-        })
-        console.log("New basket items:" + newBasketItems);
-        console.log("Basket items before set:" + basketItems);
-        setBasketItems(newBasketItems);
-        console.log("Basket items after set:" + basketItems);
+      setBasketItems(data);
     });
   };
 
@@ -88,7 +111,7 @@ function HouseContainer({house}){
     <div>
       {roomNodes}
     </div>
-    <RoomForm house={house} key={house.id}/>
+    <RoomForm house={house} key={house.id} createNewRoom={createNewRoom}/>
     </>
   )
 }

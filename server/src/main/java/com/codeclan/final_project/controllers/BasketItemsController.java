@@ -41,13 +41,14 @@ public class BasketItemsController {
     }
 
     @DeleteMapping("houses/{houseId}/basket/{itemId}")
-    public ResponseEntity<House> deleteBasketItem(@PathVariable Long houseId, @PathVariable Long itemId) {
+    public ResponseEntity<List<Item>> deleteBasketItem(@PathVariable Long houseId, @PathVariable Long itemId) {
         Optional<House> houseOptional = houseRepository.findById(houseId);
         Optional<Item> itemOptional = itemRepository.findById(itemId);
         House house = houseOptional.get();
         Item item = itemOptional.get();
         house.removeItemFromBasket(item);
         houseRepository.save(house);
-        return new ResponseEntity<>(house, HttpStatus.NO_CONTENT);
+        List<Item> basketItems = house.getBasket().getBasketItems();
+        return new ResponseEntity<>(basketItems, HttpStatus.OK);
     }
 }
